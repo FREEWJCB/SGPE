@@ -1,0 +1,189 @@
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #29d;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  opacity: 1.0;
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+          animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/**
+ * overhang.min.css
+ * Paul Krishnamurthy 2016
+ *
+ * https://paulkr.com
+ * paul@paulkr.com
+ */
+
+ .overhang{position:fixed;display:none;width:100%;z-index:9999;padding:15px 2px;top:0;left:0;right:0;text-align:center;box-sizing:border-box}.overhang-message{color:#fff;font-size:20px}.overhang-message strong{font-weight:700}.overhang-message a{color:inherit}.overhang-message a:hover{text-decoration:none}.overhang-overlay{position:fixed;display:block;background-color:#000;opacity:.6;top:0;bottom:0;left:0;right:0;z-index:9998}.overhang-prompt-field{height:30px;width:250px;border-radius:5px;border:none;display:block;margin-left:auto;margin-right:auto;margin-top:15px;bottom:7px;position:relative;padding-left:3px;padding-right:3px;outline:0;font-family:Roboto,sans-serif;font-size:15px}.overhang-no-option,.overhang-yes-option{min-width:50px;height:30px;border:none;outline:0;border-radius:4px;font-size:20px;color:#fff;cursor:pointer;margin:0 6px}.overhang-yes-option{margin-left:15px}.overhang-close{vertical-align:middle;cursor:pointer;margin-top:-4px;padding-left:13px;font-size:2em;font-weight:700;display:inline-block;line-height:20px}.overhang-close:after{content:"\D7"}@media (max-width:720px){.overhang-close{font-size:2em;line-height:14px}.overhang-message{font-size:15px}}
+ body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: url(/images/bg.png?7f0dab0af9333b74e21902cc939e290c);
+  background-size: cover;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.box .inputBox {
+  position: relative;
+}
+
+.box .inputBox input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.box .inputBox label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  letter-spacing: 1px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.box .inputBox input:focus ~ label,
+.box .inputBox input:valid ~ label {
+  top: -18px;
+  left: 0;
+  color: #03a9f4;
+  font-size: 12px;
+}
+
+.box .inputCheckbox {
+  position: relative;
+}
+
+.box .inputCheckbox input {
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.box .inputCheckbox label {
+  color: #fff;
+  font-size: 14px;
+  padding: 20px 0px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.box .submit {
+  position: relative;
+  text-align: center;
+}
+
+.box .submit input[type=submit] {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #03a9f4;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.box .submit a {
+  color: #fff;
+  font-size: 14px;
+  padding: 20px 0px;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+

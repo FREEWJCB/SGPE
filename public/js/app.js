@@ -63239,7 +63239,7 @@ window.turbolinks = __webpack_require__(/*! turbolinks */ "./node_modules/turbol
 window.nprogress = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 window.fontawesome = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.min.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.min.js");
 window.bootstrap = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-window.overhang = __webpack_require__(/*! overhang/dist/overhang.min.js */ "./node_modules/overhang/dist/overhang.min.js"); // 
+window.overhang = __webpack_require__(/*! overhang/dist/overhang.min.js */ "./node_modules/overhang/dist/overhang.min.js"); //
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
@@ -70514,9 +70514,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\COLDWJCB\Documents\MOGT\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\COLDWJCB\Documents\MOGT\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\COLDWJCB\Documents\MOGT\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\COLDWJCB\Documents\GitHub\SGPE\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\COLDWJCB\Documents\GitHub\SGPE\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\COLDWJCB\Documents\GitHub\SGPE\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

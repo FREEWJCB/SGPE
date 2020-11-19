@@ -15,7 +15,7 @@ window.nprogress = require("nprogress");
 window.fontawesome = require('@fortawesome/fontawesome-free/js/all.min.js');
 window.bootstrap = require('bootstrap');
 window.overhang = require("overhang/dist/overhang.min.js");
-// 
+//
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 

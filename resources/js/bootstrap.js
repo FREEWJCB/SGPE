@@ -29,6 +29,7 @@ window.overlayScrollbars = require("admin-lte/plugins/overlayScrollbars/js/jquer
 window.adminlte = require("admin-lte/dist/js/adminlte.js");
 window.dashboard = require("admin-lte/dist/js/pages/dashboard.js");
 window.demo = require("admin-lte/dist/js/demo.js");
+window.progress = require('./componentes/progress.js');
 //
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

@@ -1,5 +1,5 @@
 
-@extends('layouts.login')
+@extends('plantilla.login')
 @section('contenido')
     <div class="box">
         <h2>Iniciar Sesión</h2>

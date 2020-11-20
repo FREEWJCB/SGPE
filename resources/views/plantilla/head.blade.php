@@ -10,10 +10,11 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-
+        @include('menu')
         @yield('contenido')
     </div>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-    @yield('script')
+    <script type="text/javascript"> @include('js.combo') @include('js.crud') </script>
+    
 </body>
 </html>

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('titulo','Inicio')</title>
+    {{-- <link rel="stylesheet" href="{{ asset('css/OverlayScrollbars.min.css') }}"  /> --}}
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}"  />
     @yield('css')
 </head>
@@ -14,8 +15,10 @@
         @include('plantilla.menu')
         @yield('contenido')
     </div>
+    <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.overlayScrollbars.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/admin.js') }}" type="text/javascript"></script>
     <script type="text/javascript"> @include('js.combo') @include('js.crud') </script>
-    
+
 </body>
 </html>

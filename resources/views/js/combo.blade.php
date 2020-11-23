@@ -1,5 +1,3 @@
-
- $.widget.bridge('uibutton', $.ui.button);
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")

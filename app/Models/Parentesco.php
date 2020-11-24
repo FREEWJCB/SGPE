@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Parentesco extends Model
 {
     use HasFactory;
+
+    protected $table = 'parentesco';
+
+    protected $guarded = ['id'];
+
+    // protected $fillable = ['cargos'];
 }

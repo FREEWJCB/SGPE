@@ -326,11 +326,9 @@
             url:"{{route('Estudiante.alergias')}}",
             data: "alergia="+alergia,
             beforeSend: function() {
-                setStart();
                 $("#alergia").attr("readonly", "readonly");
             },
             success: function(valores) {
-                setDone();
                 $("#alergia").removeAttr("readonly");
                 if(valores.num > 0){
                     $("#clear_a").fadeIn();
@@ -357,11 +355,9 @@
             url:"{{route('Estudiante.discapacidades')}}",
             data: "discapacidad="+discapacidad,
             beforeSend: function() {
-                setStart();
                 $("#discapacidad").attr("readonly", "readonly");
             },
             success: function(valores) {
-                setDone();
                 $("#discapacidad").removeAttr("readonly");
                 if(valores.num > 0){
                     $("#clear_d").fadeIn();
@@ -387,14 +383,12 @@
                 url:"{{route('Estudiante.combobox')}}",
                 data: "tabla="+tabla+"&atributo="+atributo+"&tipo="+tipo,
                 beforeSend: function() {
-                    setStart();
                     $("#alergia").attr("readonly", "readonly");
                     $("#discapacidad").attr("readonly", "readonly");
                     $("#tipoa").attr("disabled", "disabled");
                     $("#tipod").attr("disabled", "disabled");
                 },
                 success: function(valores) {
-                    setDone();
                     $("#alergia").removeAttr("readonly");
                     $("#discapacidad").removeAttr("readonly");
                     $("#tipoa").removeAttr("disabled");
@@ -434,7 +428,6 @@
             url:"{{route('Estudiante.representante')}}",
             data: "cedula="+cedula,
             beforeSend: function() {
-                setStart();
                 $("#cedula_r").attr("readonly", "readonly");
                 $("#representante").val('');
                 $("#nombre_r").val('');
@@ -448,7 +441,6 @@
                 $("#direccion_r").val('');
             },
             success: function(valores) {
-                setDone();
                 if(valores.num_p > 0){
                     $("#repre").fadeOut();
                     $("#persona").val(valores.persona);

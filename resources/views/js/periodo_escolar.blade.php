@@ -129,7 +129,6 @@
             url:"{{route('Periodo_Escolar.empleado')}}",
             data: "cedula="+cedula,
             beforeSend: function() {
-                setStart();
                 $("#cedula").attr("readonly", "readonly");
                 $("#profesor").slideUp();
                 $("#noprofesor").slideUp();
@@ -137,7 +136,6 @@
                 $("#nombre").val('');
             },
             success: function(valores) {
-                setDone();
                 $("#cedula").removeAttr("readonly");
                 if(valores.num > 0){
                     $("#empleado").val(valores.empleado);

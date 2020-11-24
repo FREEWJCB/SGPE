@@ -33,25 +33,6 @@ function cargar() {
     return false;
 }
 
-// function cargar_axios() {
-//     axios({
-//         type: "POST",
-//         @yield('cargar')
-//         data: $("#form").serialize(),
-//     })
-//     .then(function (registro){
-//         $("#agrega-registros").html(registro.catalogo);
-//         console.log("%cCargar catalogo realizado con éxito",'color:green;');
-//         return false;
-//     })
-//     .catch(function (registro){
-//         $("#agrega-registros").html(registro.catalogo);
-//         console.log("%cCargar catalogo realizado con éxito",'color:green;');
-//         return false;
-//     });
-//     return false;
-// }
-
 
 $(document).ready(function() {
     $("#nuevo").on("click", function() {
@@ -93,7 +74,6 @@ function agregaRegistro() {
             url: url,
             data: $("#formulario").serialize(),
             beforeSend: function() {
-                setStart();
                 $("#formulario input[type=reset]").val("Procesando...");
                 $("#formulario input[type=submit]").val("Procesando...");
                 $("#formulario input[type=reset]").attr("disabled", "disabled");
@@ -102,7 +82,6 @@ function agregaRegistro() {
                 $("#formulario textarea").attr("readonly", "readonly");
             },
             success: function(valores) {
-                setDone();
                 if(!valores.error || valores.error == 'false'){
                     type = "success";
                     if (pro == "Registro") {
@@ -173,12 +152,8 @@ function desactivar(id) {
                 $.ajax({
                     type: "DELETE",
                     @yield('delete')
-                    beforeSend: function() {
-                        setStart();
-                    },
                     success: function() {
 
-                        setDone();
                         $("body").overhang({
                             type: "success",
                             message: "Dato eliminado con exito",

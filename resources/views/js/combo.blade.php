@@ -11,7 +11,6 @@ function error(xhr, textStatus, errorMessage) {
         //console.log(´%c${indice} - ${valor}´,'color:red;');
         //console.log("%cHola",'color:red;');
     });
-    setDone();
     $("body").overhang({
         type: "error",
         message: "error validacion!"

@@ -129,7 +129,6 @@
             url:"{{route('Usuario.empleado')}}",
             data: "cedula="+cedula,
             beforeSend: function() {
-                setStart();
                 $("#cedula").attr("readonly", "readonly");
                 $("#siempleado").slideUp();
                 $("#noempleado").slideUp();
@@ -138,7 +137,6 @@
                 $("#cargo").val('');
             },
             success: function(valores) {
-                setDone();
                 if(valores.num > 0){
                     $("#emplea").fadeOut();
                     $("#cance").fadeIn();

@@ -3,7 +3,9 @@
 @include('js.state')
 
 @section('titulo','Estado')
-@section('proyecto','active')
+@section('direccion_m', 'menu-open')
+@section('direccion', 'active')
+@section('state', 'active')
 
 @section('busqueda')
 
@@ -11,12 +13,6 @@
     <input name="bs_states" id="bs_states" onkeyup="mayuscula(this)"  onkeypress="return letra(event)" maxlength="255"b class="form-control mr-sm-2" type="text" placeholder="Buscar por estado" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
-
 
 @section('thead')
 

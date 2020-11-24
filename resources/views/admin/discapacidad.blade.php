@@ -3,7 +3,9 @@
 @include('js.discapacidad')
 
 @section('titulo','Discapacidad')
-@section('proyecto','active')
+@section('estudiante_m', 'menu-open')
+@section('estudiante_o', 'active')
+@section('discapacidad', 'active')
 
 @section('busqueda')
 
@@ -22,11 +24,6 @@
     <input name="bs_discapacidades" id="bs_discapacidades" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por discapacidades" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
 
 @section('thead')
 

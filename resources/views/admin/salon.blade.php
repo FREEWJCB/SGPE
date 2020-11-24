@@ -3,7 +3,9 @@
 @include('js.salon')
 
 @section('titulo','Salon')
-@section('proyecto','active')
+@section('periodo_escolar_m', 'menu-open')
+@section('periodo_escolar_o', 'active')
+@section('salon', 'active')
 
 @section('busqueda')
 
@@ -11,12 +13,6 @@
     <input name="bs_salones" id="bs_salones" onkeyup="mayuscula(this)" maxlength="10" class="form-control mr-sm-2" type="text" placeholder="Buscar por salon" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
-
 
 @section('thead')
 

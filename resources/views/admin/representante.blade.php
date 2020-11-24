@@ -3,7 +3,9 @@
 @include('js.representante')
 
 @section('titulo','Representante')
-@section('proyecto','active')
+@section('inscripcion_m', 'menu-open')
+@section('inscripcion_o', 'active')
+@section('representante', 'active')
 
 @section('busqueda')
 
@@ -34,11 +36,6 @@
     </select>
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
 
 @section('thead')
 

@@ -3,7 +3,9 @@
 @include('js.tipo_usuario')
 
 @section('titulo','Tipo Usuario')
-@section('proyecto','active')
+@section('empleado_m', 'menu-open')
+@section('empleado_o', 'active')
+@section('tipo_usuario', 'active')
 
 @section('busqueda')
 
@@ -11,12 +13,6 @@
     <input name="bs_tipo" id="bs_tipo" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por tipo" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
-
 
 @section('thead')
 

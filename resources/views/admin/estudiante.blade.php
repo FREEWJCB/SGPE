@@ -3,7 +3,9 @@
 @include('js.estudiante')
 
 @section('titulo','Estudiante')
-@section('proyecto','active')
+@section('inscripcion_m', 'menu-open')
+@section('inscripcion_o', 'active')
+@section('estudiante', 'active')
 
 @section('busqueda')
 
@@ -34,11 +36,6 @@
     </div>
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
 
 @section('thead')
 

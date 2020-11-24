@@ -3,7 +3,9 @@
 @include('js.empleado')
 
 @section('titulo','Empleado')
-@section('proyecto','active')
+@section('empleado_m', 'menu-open')
+@section('empleado_o', 'active')
+@section('empleado', 'active')
 @section('modal','modal-lg')
 
 @section('busqueda')
@@ -37,11 +39,6 @@
         @endif
     </select>
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
 
 @section('thead')
 

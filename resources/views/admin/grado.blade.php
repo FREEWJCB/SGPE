@@ -3,7 +3,9 @@
 @include('js.grado')
 
 @section('titulo','Grado')
-@section('proyecto','active')
+@section('periodo_escolar_m', 'menu-open')
+@section('periodo_escolar_o', 'active')
+@section('grado', 'active')
 
 @section('busqueda')
 
@@ -11,12 +13,6 @@
     <input name="bs_grados" id="bs_grados" onkeyup="mayuscula(this)" onkeypress="return numero_e(event)" maxlength="2" class="form-control mr-sm-2" type="text" placeholder="Buscar por grado" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
-
 
 @section('thead')
 

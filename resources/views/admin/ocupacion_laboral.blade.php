@@ -3,7 +3,9 @@
 @include('js.ocupacion_laboral')
 
 @section('titulo','Ocupación Laboral')
-@section('proyecto','active')
+@section('representante_m', 'menu-open')
+@section('representante_o', 'active')
+@section('ocupacion_laboral', 'active')
 
 @section('busqueda')
 
@@ -11,12 +13,6 @@
     <input name="bs_labor" id="bs_labor" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por labor" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
-
 
 @section('thead')
 

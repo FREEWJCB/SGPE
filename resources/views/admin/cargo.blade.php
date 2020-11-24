@@ -3,7 +3,9 @@
 @include('js.cargo')
 
 @section('titulo','Cargo')
-@section('proyecto','active')
+@section('empleado_m', 'menu-open')
+@section('empleado_o', 'active')
+@section('cargo', 'active')
 
 @section('busqueda')
 
@@ -11,12 +13,6 @@
     <input name="bs_cargos" id="bs_cargos" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por cargo" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
-
 
 @section('thead')
 

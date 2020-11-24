@@ -1,11 +1,11 @@
 @extends('plantilla.menu')
 
-@include('js.municipality')
+@include('js.parroquia')
 
-@section('titulo','Municipio')
+@section('titulo','Parroquia')
 @section('direccion_m', 'menu-open')
 @section('direccion', 'active')
-@section('municipality', 'active')
+@section('parroquia', 'active')
 
 @section('busqueda')
 
@@ -20,8 +20,13 @@
 
     </select>
 
-    <label for="bs_municipalitys"><b></b>Municipio: &nbsp;&nbsp;&nbsp;</label>
-    <input name="bs_municipalitys" id="bs_municipalitys" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por municipios" arialabel="Search"/>
+    <label for="bs_municipality"><b></b>Municipio: &nbsp;&nbsp;&nbsp;</label>
+    <select class="form-control mr-sm-2" required id="bs_municipality" name="bs_municipality">
+      <option class="form-control mr-sm-2" value="" selected>Seleccione el municipio</option>
+    </select>
+
+    <label for="bs_parroquias"><b></b>Parroquia: &nbsp;&nbsp;&nbsp;</label>
+    <input name="bs_parroquias" id="bs_parroquias" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por parroquias" arialabel="Search"/>
 
 @endsection
 
@@ -29,6 +34,7 @@
 
     <th scope="col"><center>Estado</center></th>
     <th scope="col"><center>Municipio</center></th>
+    <th scope="col"><center>Parroquia</center></th>
 
 @endsection
 
@@ -42,6 +48,7 @@
                 <th scope="row"><center>{{ $i }}</center></th>
                 <td><center>{{ $cons2->states }}</center></td>
                 <td><center>{{ $cons2->municipalitys }}</center></td>
+                <td><center>{{ $cons2->parroquias }}</center></td>
                 @include('plantilla.catalogo')
             </tr>
         @endforeach
@@ -68,10 +75,19 @@
     </div>
 
     <div class="form-group">
-      <label for="municipalitys"><b>Municipio:</b></label>
-      <input type="text" class="form-control" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" required id="municipalitys" name="municipalitys" />
-      <input type="hidden" id="municipalitys2" name="municipalitys2" />
-      <small id="municipalitys_e" style="color: red"></small>
+      <label for="municipality"><b>Municipio:</b></label>
+      <select class="form-control" required id="municipality" name="municipality">
+        <option value="null" disabled selected>Seleccione el municipio</option>
+      </select>
+      <input type="hidden" id="municipality2" name="municipality2" />
+      <small id="municipality_e" style="color: red"></small>
+    </div>
+
+    <div class="form-group">
+      <label for="parroquias"><b>Parroquia:</b></label>
+      <input type="text" class="form-control" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" required id="parroquias" name="parroquias" />
+      <input type="hidden" id="parroquias2" name="parroquias2" />
+      <small id="parroquias_e" style="color: red"></small>
     </div>
 
 @endsection

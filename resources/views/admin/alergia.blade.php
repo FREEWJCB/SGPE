@@ -3,7 +3,9 @@
 @include('js.alergia')
 
 @section('titulo','Alergia')
-@section('proyecto','active')
+@section('estudiante_m', 'menu-open')
+@section('estudiante_o', 'active')
+@section('alergia', 'active')
 
 @section('busqueda')
 
@@ -22,11 +24,6 @@
     <input name="bs_alergias" id="bs_alergias" onkeypress="return letra(event)" onkeyup="mayuscula(this)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por alergias" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
 
 @section('thead')
 

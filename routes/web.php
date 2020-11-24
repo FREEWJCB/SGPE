@@ -40,7 +40,7 @@ use App\Http\Controllers\combo;
 Route::get('/', function () {
     // return view('index');
     return view('admin.index');
-});
+})->name('inicio');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

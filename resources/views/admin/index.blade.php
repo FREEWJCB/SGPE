@@ -1,5 +1,8 @@
 @extends('plantilla.head')
 
+@section('inicio', 'active')
+@section('inicio2', 'active')
+
 @section('contenido')
 
     <div class="content-wrapper">

@@ -3,8 +3,9 @@
 @include('js.periodo_escolar')
 
 @section('titulo','Periodo Escolar')
-
-@section('proyecto','active')
+@section('inscripcion_m', 'menu-open')
+@section('inscripcion_o', 'active')
+@section('periodo_escolar', 'active')
 
 @section('busqueda')
 
@@ -51,11 +52,6 @@
     <input name="bs_ano" id="bs_ano" maxlength="9" class="form-control mr-sm-2" type="text" placeholder="Buscar por año" arialabel="Search" />
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
 
 @section('thead2')
     <tr>

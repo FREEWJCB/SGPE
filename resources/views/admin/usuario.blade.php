@@ -3,7 +3,9 @@
 @include('js.usuario')
 
 @section('titulo','Usuario')
-@section('proyecto','active')
+@section('empleado_m', 'menu-open')
+@section('empleado_o', 'active')
+@section('usuario', 'active')
 
 @section('busqueda')
 
@@ -33,11 +35,6 @@
     <input name="bs_username" id="bs_username" class="form-control mr-sm-2" type="text" placeholder="Buscar por usuario" arialabel="Search"/>
 
 @endsection
-
-@if ($js == 'axios')
-    @section('ajax','warning')
-    @section('axios','success')
-@endif
 
 @section('thead')
 

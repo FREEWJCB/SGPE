@@ -16,7 +16,7 @@ class MunicipalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($js="AJAX")
+    public function index()
     {
         //
         $cons = Municipality::select('municipality.*', 'state.states')

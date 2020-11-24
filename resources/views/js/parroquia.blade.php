@@ -50,7 +50,7 @@
 
     $("#state").val(valores.state);
     $("#state2").val(valores.state);
-    combo("municipality", "state", $('#state2').val(), "municipality", $('#municipality2').val(), "municipio", "parroquias", 1);
+    combo("municipality", "state", valores.state, "municipality", valores.municipality, "municipio", "parroquias", 1);
     $("#municipality2").val(valores.municipality);
     $("#parroquias").val(valores.parroquias);
     $("#parroquias2").val(valores.parroquias);

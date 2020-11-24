@@ -15,7 +15,7 @@ class CargoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($js="AJAX")
+    public function index()
     {
         //
         $cons = Cargo::where('status', '1')->orderBy('cargos','asc');

@@ -7,6 +7,12 @@
 @section('estudiante_o', 'active')
 @section('tipo_discapacidad', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Estudiante</a></li>
+    <li class="breadcrumb-item active">Tipo Discapacidad</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_tipo">Tipo: &nbsp;&nbsp;&nbsp;</label>

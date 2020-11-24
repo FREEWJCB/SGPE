@@ -6,22 +6,22 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block @yield('inicio2')">
-            <a href="index3.html" class="nav-link">Inicio</a>
+            <a href="{{ route('inicio') }}" class="nav-link">Inicio</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block @yield('perfil')">
             <a href="#" class="nav-link">Perfil</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block @yield('inscripcion2')">
-            <a href="#" class="nav-link">Inscripción</a>
+            <a href="{{ route('Inscripcion.index') }}" class="nav-link">Inscripción</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block @yield('horario2')">
-            <a href="#" class="nav-link">Horario</a>
+            <a href="{{ route('Horario.index') }}" class="nav-link">Horario</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block @yield('asistencia2')">
-            <a href="#" class="nav-link">Asistencia</a>
+            <a href="{{ route('Asistencia.index') }}" class="nav-link">Asistencia</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block @yield('permiso2')">
-            <a href="#" class="nav-link">Permiso</a>
+            <a href="{{ route('Permiso.index') }}" class="nav-link">Permiso</a>
         </li>
     </ul>
 
@@ -39,7 +39,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('inicio') }}" class="brand-link">
         <img src="{{ asset('images/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>

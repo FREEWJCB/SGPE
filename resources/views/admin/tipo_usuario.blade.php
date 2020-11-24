@@ -7,6 +7,12 @@
 @section('empleado_o', 'active')
 @section('tipo_usuario', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Empleado</a></li>
+    <li class="breadcrumb-item active">Tipo Usuario</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_tipo">Tipo: &nbsp;&nbsp;&nbsp;</label>

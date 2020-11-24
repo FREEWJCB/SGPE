@@ -7,6 +7,12 @@
 @section('representante_o', 'active')
 @section('parentesco', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Representante</a></li>
+    <li class="breadcrumb-item active">Parentesco</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_parentescos"><b>Parentesco:</b> &nbsp;&nbsp;&nbsp;</label>

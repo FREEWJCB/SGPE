@@ -7,6 +7,12 @@
 @section('periodo_escolar_o', 'active')
 @section('salon', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Periodo Escolar</a></li>
+    <li class="breadcrumb-item active">Salon</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_salones"><b></b>Salon: &nbsp;&nbsp;&nbsp;</label>

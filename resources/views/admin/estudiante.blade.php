@@ -7,6 +7,11 @@
 @section('inscripcion_o', 'active')
 @section('estudiante', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Inscripción</a></li>
+    <li class="breadcrumb-item active">Estudiante</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_cedula"><b>Cédula:</b> &nbsp;&nbsp;&nbsp;</label>

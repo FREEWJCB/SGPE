@@ -7,6 +7,12 @@
 @section('periodo_escolar_o', 'active')
 @section('grado', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Periodo Escolar</a></li>
+    <li class="breadcrumb-item active">Grado</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_grados"><b>Grado:</b> &nbsp;&nbsp;&nbsp;</label>

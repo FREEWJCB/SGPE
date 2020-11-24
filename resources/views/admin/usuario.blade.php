@@ -7,6 +7,11 @@
 @section('empleado_o', 'active')
 @section('usuario', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Empleado</a></li>
+    <li class="breadcrumb-item active">Usuario</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_cedula">Cédula: &nbsp;&nbsp;&nbsp;</label>

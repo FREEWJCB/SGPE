@@ -7,6 +7,12 @@
 @section('estudiante_o', 'active')
 @section('tipo_alergia', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Estudiante</a></li>
+    <li class="breadcrumb-item active">Tipos Alergia</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_tipo"><b>Tipo:</b> &nbsp;&nbsp;&nbsp;</label>

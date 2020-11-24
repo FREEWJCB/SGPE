@@ -13,7 +13,10 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         @include('plantilla.menu')
-        @yield('contenido')
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            @yield('contenido')
+        </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.overlayScrollbars.min.js') }}" type="text/javascript"></script>

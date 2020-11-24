@@ -8,6 +8,11 @@
 @section('empleado', 'active')
 @section('modal','modal-lg')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Empleado</a></li>
+    <li class="breadcrumb-item active">Empleado</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_cedula"><b>Cédula:</b> &nbsp;&nbsp;&nbsp;</label>

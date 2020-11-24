@@ -7,6 +7,12 @@
 @section('direccion', 'active')
 @section('municipality', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Dirección</a></li>
+    <li class="breadcrumb-item active">Municipio</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_state"><b></b>Estado: &nbsp;&nbsp;&nbsp;</label>

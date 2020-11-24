@@ -7,6 +7,12 @@
 @section('empleado_o', 'active')
 @section('cargo', 'active')
 
+@section('address')
+    <li class="breadcrumb-item"><a href="#">Configuración</a></li>
+    <li class="breadcrumb-item"><a href="#">Empleado</a></li>
+    <li class="breadcrumb-item active">Cargo</li>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_cargos"><b>Cargo:</b> &nbsp;&nbsp;&nbsp;</label>

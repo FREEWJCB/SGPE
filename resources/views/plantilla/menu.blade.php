@@ -80,25 +80,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
+                            <a href="{{ route('Periodo_Escolar.index') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Periodo Escolar</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
+                            <a href="{{ route('Representante.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Representante</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
+                            <a href="{{ route('Estudiante.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Estudiante</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('Inscripcion.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Inscripción</p>
                             </a>
@@ -116,19 +116,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="{{ route('Horario.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Horario</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                            <a href="{{ route('Asistencia.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Asistencia</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/boxed.html" class="nav-link">
+                            <a href="{{ route('Permiso.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Permisos</p>
                             </a>
@@ -145,13 +145,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="{{ route('Empleado.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Empleado</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="{{ route('Usuario.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Usuario</p>
                             </a>
@@ -169,19 +169,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html" class="nav-link">
+                            <a href="{{ route('State.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Estado</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/compose.html" class="nav-link">
+                            <a href="{{ route('Municipality.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Municipio</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/read-mail.html" class="nav-link">
+                            <a href="{{ route('Parroquia.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Parroquia</p>
                             </a>
@@ -198,13 +198,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/examples/invoice.html" class="nav-link">
+                            <a href="{{ route('Cargo.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Cargo</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/profile.html" class="nav-link">
+                            <a href="{{ route('Tipo_Usuario.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tipo de usuario</p>
                             </a>
@@ -221,19 +221,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/examples/login.html" class="nav-link">
+                            <a href="{{ route('Seccion.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sección</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/register.html" class="nav-link">
+                            <a href="{{ route('Salon.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Salon</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/forgot-password.html" class="nav-link">
+                            <a href="{{ route('Grado.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Grado</p>
                             </a>
@@ -250,13 +250,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/examples/login.html" class="nav-link">
+                            <a href="{{ route('Ocupacion_Laboral.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ocupación laboral</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/register.html" class="nav-link">
+                            <a href="{{ route('Parentesco.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Parentesco</p>
                             </a>
@@ -273,25 +273,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/examples/login.html" class="nav-link">
+                            <a href="{{ route('Tipo_Alergia.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tipo de alergia</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/register.html" class="nav-link">
+                            <a href="{{ route('Tipo_Discapacidad.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tipo de discapacidad</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/forgot-password.html" class="nav-link">
+                            <a href="{{ route('Alergia.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Alergia</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/forgot-password.html" class="nav-link">
+                            <a href="{{ route('Discapacidad.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Discapacidad</p>
                             </a>

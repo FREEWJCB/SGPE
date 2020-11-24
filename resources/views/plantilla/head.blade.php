@@ -14,11 +14,13 @@
     <div class="wrapper">
         @include('plantilla.menu')
         <!-- Content Header (Page header) -->
-        <div class="content-header">
+        <div class="content-wrapper">
             @yield('contenido')
         </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.overlayScrollbars.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/admin.js') }}" type="text/javascript"></script>
     <script type="text/javascript"> @include('js.combo') @include('js.crud') </script>

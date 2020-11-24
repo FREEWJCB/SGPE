@@ -11,11 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/admin.js', 'public/js').js('resources/js/login.js', 'public/js')
-    .sass('resources/sass/admin.scss', 'public/css').sass('resources/sass/login.scss', 'public/css')
-    // .postCss('resources/css/app.css', 'public/css', [
-    //     require('postcss-import'),
-    //     require('tailwindcss'),
-    // ])
-    
+mix.js('resources/js/admin.js', 'public/js')
+// .js('resources/js/login.js', 'public/js')
+    // .sass('resources/sass/admin.scss', 'public/css').sass('resources/sass/login.scss', 'public/css')
     .webpackConfig(require('./webpack.config'));

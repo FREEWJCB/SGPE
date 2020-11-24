@@ -14,13 +14,13 @@ class SeccionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($js="AJAX")
+    public function index()
     {
         //
         $cons = Seccion::where('status', '1')->orderBy('secciones','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.seccion',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.seccion',['cons' => $cons2, 'num' => $num]);
     }
 
     /**

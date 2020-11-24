@@ -15,13 +15,13 @@ class Tipo_AlergiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($js="AJAX")
+    public function index()
     {
         //
         $cons = Tipo_alergia::where('status', '1')->orderBy('tipo','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.tipo_alergia',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.tipo_alergia',['cons' => $cons2, 'num' => $num]);
     }
 
     /**

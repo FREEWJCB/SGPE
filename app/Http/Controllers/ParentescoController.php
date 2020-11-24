@@ -21,7 +21,7 @@ class ParentescoController extends Controller
         $cons = Parentesco::where('status', '1')->orderBy('parentescos','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.parentesco',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.parentesco',['cons' => $cons2, 'num' => $num]);
     }
 
     /**

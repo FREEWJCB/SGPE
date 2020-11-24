@@ -15,13 +15,13 @@ class GradoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($js="AJAX")
+    public function index()
     {
         //
         $cons = Grado::where('status', '1')->orderBy('grados','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.grado',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.grado',['cons' => $cons2, 'num' => $num]);
     }
 
     /**

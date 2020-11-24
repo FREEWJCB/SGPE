@@ -14,7 +14,7 @@ class AlergiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($js="AJAX")
+    public function index()
     {
         //
         $cons = Alergia::select('alergia.*', 'tipo_alergia.tipo as tip')
@@ -28,7 +28,7 @@ class AlergiaController extends Controller
         $tipo_alergia2 = $tipo_alergia->get();
         $num_tipo = $tipo_alergia->count();
 
-        return view('view.alergia',['cons' => $cons2, 'num' => $num, 'num_tipo' => $num_tipo, 'tipo_alergia' => $tipo_alergia2, 'js' => $js]);
+        return view('admin.alergia',['cons' => $cons2, 'num' => $num, 'num_tipo' => $num_tipo, 'tipo_alergia' => $tipo_alergia2]);
     }
 
     /**

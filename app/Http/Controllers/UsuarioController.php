@@ -16,7 +16,7 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($js="AJAX")
+    public function index()
     {
 
         $cons = Usuario::select('usuario.*','empleado.*','persona.*','tipo_usuario.tipo as tip')
@@ -31,7 +31,7 @@ class UsuarioController extends Controller
         $tipo2 = $tipo->get();
         $num_tipo = $tipo->count();
 
-        return view('view.Usuario',['cons' => $cons2, 'num' => $num, 'tipo' => $tipo2, 'num_tipo' => $num_tipo, 'js' => $js]);
+        return view('admin.Usuario',['cons' => $cons2, 'num' => $num, 'tipo' => $tipo2, 'num_tipo' => $num_tipo]);
     }
 
     /**

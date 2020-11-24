@@ -1,4 +1,4 @@
-@extends('plantilla.menu')
+@extends('plantilla.head')
 
 @include('js.salon')
 

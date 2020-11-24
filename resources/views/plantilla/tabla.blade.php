@@ -25,7 +25,7 @@
             <tr>
                 <th width="3%" scope="col"><center>#</center></th>
                 @yield('thead')
-                <th width="15%" scope="col"><center>Opcción</center></th>
+                <th width="18%" scope="col"><center>Opcción</center></th>
             </tr>
         </thead>
         <tbody id="agrega-registros">

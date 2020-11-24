@@ -1,5 +1,5 @@
 <td>
-    <center data-turbolinks="false" class='navbar navbar-light'>
+    <center class='navbar navbar-light'>
         <a href="#" onclick = "return mostrar({{ $cons2->id }},'Mostrar');" class="btn btn-info btncolorblanco">
             <i class="fa fa-list-alt"></i>
         </a>

@@ -20,10 +20,9 @@ class ParroquiaController extends Controller
     {
         //
         $cons = Parroquia::select('parroquia.*', 'municipality.municipalitys', 'state.states')
-                    ->join([
-                        ['municipality', 'parroquia.municipality', '=', 'municipality.id'],
-                        ['state', 'municipality.state', '=', 'state.id']
-                    ])->where('parroquia.status', '1')->orderBy('parroquias','asc');
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+                    ->join('state', 'municipality.state', '=', 'state.id')
+                    ->where('parroquia.status', '1')->orderBy('parroquias','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
 
@@ -105,10 +104,9 @@ class ParroquiaController extends Controller
         $municipality=$request->bs_municipality;
         $parroquias=$request->bs_parroquias;
         $cons = Parroquia::select('parroquia.*', 'municipality.municipalitys', 'state.states')
-                    ->join([
-                        ['municipality', 'parroquia.municipality', '=', 'municipality.id'],
-                        ['state', 'municipality.state', '=', 'state.id']
-                    ])->where([
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+                    ->join('state', 'municipality.state', '=', 'state.id')
+                    ->where([
                         ['parroquias','like', "%$parroquias%"],
                         ['state', 'like', "%$state%"],
                         ['municipality', 'like', "%$municipality%"],
@@ -130,7 +128,7 @@ class ParroquiaController extends Controller
                 $cat.="<tr>
                         <th scope='row'><center>$i</center></th>
                         <td><center>$states</center></td>
-                        <td><center>$Municipalitys</center></td>
+                        <td><center>$municipalitys</center></td>
                         <td><center>$parroquias</center></td>
                         <td>
                             <center data-turbolinks='false' class='navbar navbar-light'>

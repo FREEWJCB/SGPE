@@ -1,6 +1,8 @@
 @section('document')
 
     $("#bs_state").on("change", function() {
+        let state = $("#bs_state").val();
+        combo("municipality", "state", state, "bs_municipality", 0, "municipio", "municipalitys", 2);
         cargar();
     });
 
@@ -10,6 +12,11 @@
 
     $("#bs_parroquias").on("keyup", function() {
         cargar();
+    });
+
+    $("#state").on("change", function() {
+        let state = $("#state").val();
+        combo("municipality", "state", state, "municipality", 0, "municipio", "municipalitys", 2);
     });
 
 @endsection

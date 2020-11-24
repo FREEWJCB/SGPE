@@ -21,7 +21,7 @@
     });
 
     $("#state").on("change", function() {
-        var state = $("#state").val();
+        let state = $("#state").val();
         combo("municipality", "state", state, "municipality", 0, "municipio", "municipalitys", 2);
     });
 

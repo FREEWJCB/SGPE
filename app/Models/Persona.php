@@ -13,5 +13,5 @@ class Persona extends Model
 
     protected $guarded = ['id'];
 
-    // protected $fillable = ['cedula', 'nombre', 'apellido', 'sex', 'telefono', 'direccion', 'municipality'];
+    // protected $fillable = ['cedula', 'nombre', 'apellido', 'sex', 'telefono', 'direccion', 'parroquia'];
 }

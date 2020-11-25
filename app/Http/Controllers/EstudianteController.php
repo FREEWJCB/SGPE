@@ -8,6 +8,7 @@ use App\Models\Estudiante;
 use App\Models\Ocupacion_laboral;
 use App\Models\Persona;
 use App\Models\Representante;
+use App\Models\Empleado;
 use App\Models\State;
 use App\Models\Tipo_alergia;
 use App\Models\Tipo_discapacidad;
@@ -568,7 +569,7 @@ class EstudianteController extends Controller
         ]);
     }
 
-    public function representante(Request $request)
+    public function persona(Request $request)
     {
         //
         $cedula=$request->cedula;
@@ -584,9 +585,12 @@ class EstudianteController extends Controller
         $persona="";
         $num_p="0";
         $num_r="0";
-        $cons= DB::table('persona')
-                ->select('persona.*', 'municipality.state')
-                ->join('municipality', 'persona.municipality', '=', 'municipality.id')
+        $num_e="0";
+        $cons= Persona::select('persona.*', 'parroquia.municipality', 'municipality.state')
+                ->join([
+                    ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
+                    ['municipality', 'persona.parroquia', '=', 'municipality.id'],
+                ])
                 ->where('cedula', $cedula);
         $cons1 = $cons->get();
         $num_p = $cons->count();
@@ -605,10 +609,13 @@ class EstudianteController extends Controller
                 $direccion=$cons2->direccion;
             }
 
-            $cons= DB::table('representante')->where('persona', $persona);
+            $cons= Representante::where('persona', $persona);
+            $consu= Empleado::where('persona', $persona);
 
             $cons1 = $cons->get();
+            $consu1 = $consu->get();
             $num_r = $cons->count();
+            $num_e = $consu->count();
 
             if ($num_r>0) {
                 # code...
@@ -634,7 +641,8 @@ class EstudianteController extends Controller
             'municipality'=>$municipality,
             'direccion'=>$direccion,
             'num_p'=>$num_p,
-            'num_r'=>$num_r
+            'num_r'=>$num_r,
+            'num_e'=>$num_e
         ]);
 
 

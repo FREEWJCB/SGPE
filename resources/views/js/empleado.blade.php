@@ -1,10 +1,6 @@
 {{-- document.ready --}}
 @section('document')
 
-    $("#cedula").on("keyup", function() {
-        persona();
-    });
-
     $("#bs_cedula").on("keyup", function() {
         cargar();
     });
@@ -29,9 +25,18 @@
         cargar();
     });
 
+    $("#cedula").on("keyup", function() {
+        persona();
+    });
+
     $("#state").on("change", function() {
         var state = $("#state").val();
         combo("municipality", "state", state, "municipality", 0, "municipio", "municipalitys", 2);
+    });
+
+    $("#municipality").on("change", function() {
+        var municipality = $("#municipality").val();
+        combo("parroquia", "municipality", municipality, "parroquia", 0, "parroquia", "parroquias", 2);
     });
 
 @endsection
@@ -44,6 +49,7 @@
 @section('select')
 
     $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+    $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
 
 @endsection
 {{-- reinicio de registro --}}
@@ -58,6 +64,7 @@
     $('#email').val('');
     $('#state').val('null');
     $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+    $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
     $('#direccion').val('');
     $('#cargo').val('null');
 
@@ -72,6 +79,7 @@
     $('#email2').val($('#email').val());
     $('#state2').val($('#state').val());
     $('#municipality2').val($('#municipality').val());
+    $('#parroquia2').val($('#parroquia').val());
     $('#direccion2').val($('#direccion').val());
     $('#cargo2').val($('#cargo').val());
 
@@ -86,6 +94,7 @@
     $('#email').val($('#email2').val());
     $('#state').val($('#state2').val());
     combo("municipality", "state", $('#state2').val(), "municipality", $('#municipality2').val(), "municipio", "municipalitys", 1);
+    combo("parroquia", "parroquia", $('#parroquia2').val(), "parroquia", $('#parroquia2').val(), "parroquia", "parroquias", 1);
     $('#direccion').val($('#direccion2').val());
     $('#cargo').val($('#cargo2').val());
 
@@ -113,6 +122,8 @@
     $("#state").val(valores.state);
     combo("municipality", "state", valores.state, "municipality", valores.municipality, "municipio", "municipalitys", 1);
     $("#municipality2").val(valores.municipality);
+    combo("parroquia", "municipality", valores.municipality, "parroquia", valores.parroquia, "parroquia", "parroquias", 1);
+    $("#parroquia2").val(valores.parroquia);
     $("#direccion").val(valores.direccion);
     $("#direccion2").val(valores.direccion);
     $("#cargo").val(valores.cargo);
@@ -131,6 +142,7 @@
     $("#email").removeAttr("readonly");
     $("#state").removeAttr("disabled");
     $("#municipality").removeAttr("disabled");
+    $("#parroquia").removeAttr("disabled");
     $("#direccion").removeAttr("readonly");
     $("#cargo").removeAttr("disabled");
 
@@ -146,6 +158,7 @@
     $("#email").attr("readonly", "readonly");
     $("#state").attr("disabled", "disabled");
     $("#municipality").attr("disabled", "disabled");
+    $("#parroquia").attr("disabled", "disabled");
     $("#direccion").attr("readonly", "readonly");
     $("#cargo").attr("disabled", "disabled");
 
@@ -169,6 +182,7 @@
                     $("#telefono").attr("readonly", "readonly");
                     $("#state").attr("disabled", "disabled");
                     $("#municipality").attr("disabled", "disabled");
+                    $("#parroquia").attr("disabled", "disabled");
                     $("#direccion").attr("readonly", "readonly");
 
                     $("#persona").val(registro.persona);
@@ -179,6 +193,7 @@
                     $("#telefono").val(registro.telefono);
                     $("#state").val(registro.state);
                     combo("municipality", "state", registro.state, "municipality", registro.municipality, "municipio", "municipalitys", 1);
+                    combo("parroquia", "municiaplity", registro.municiaplity, "parroquia", registro.parroquia, "parroquia", "parroquias", 1);
                     $("#direccion").val(registro.direccion);
                     $("#cance").fadeIn();
                 }
@@ -200,6 +215,7 @@
         $("#telefono").removeAttr("readonly");
         $("#state").removeAttr("disabled");
         $("#municipality").removeAttr("disabled");
+        $("#parroquia").removeAttr("disabled");
         $("#direccion").removeAttr("readonly");
 
         $("#persona").val('');
@@ -210,6 +226,7 @@
         $("#telefono").val('');
         $("#state").val('null');
         $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+        $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
         $("#direccion").val('');
         $("#cance").fadeIn();
     }
@@ -227,9 +244,10 @@
     let email = $("#email").val(); let email2 = $("#email2").val();
     let state = $("#state").val(); let state2 = $("#state2").val();
     let municipality = $("#municipality").val(); let municipality2 = $("#municipality2").val();
+    let parroquia = $("#parroquia").val(); let parroquia2 = $("#parroquia2").val();
     let cargo = $("#cargo").val(); let cargo2 = $("#cargo2").val();
     let direccion = $("#direccion").val(); let direccion2 = $("#direccion2").val();
-    let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ema = 0; let sta = 0; let mun = 0; let car = 0; let dir = 0;
+    let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ema = 0; let sta = 0; let mun = 0; let par = 0; let car = 0; let dir = 0;
 
 
 
@@ -240,6 +258,13 @@
 
     }
 
+    if(email == ""){
+        i++; ema++;
+        $("#email").attr('class', 'form-control border border-danger');
+        $("#email_e").html('El campo email es obligatorio.');
+
+    }
+    
     if(persona == '' && pro == 'Registro' || pro == 'Edicion'){
 
         if(pro == 'Registro'){
@@ -278,7 +303,7 @@
 
         }
 
-        {{-- if(apellido == ""){
+        if(apellido == ""){
             i++; ape++;
             $("#apellido").attr('class', 'form-control border border-danger');
             $("#apellido_e").html('El campo apellido es obligatorio.');
@@ -293,7 +318,7 @@
             $("#apellido").attr('class', 'form-control border border-danger');
             $("#apellido_e").html('El campo apellido debe contener al menos 03 caracteres.');
 
-        } --}}
+        }
 
         if(sex == "" || sex == "null"){
             i++; se++;
@@ -314,13 +339,6 @@
 
         }
 
-        if(email == ""){
-            i++; ema++;
-            $("#email").attr('class', 'form-control border border-danger');
-            $("#email_e").html('El campo email es obligatorio.');
-
-        }
-
         if(state == "" || state == "null"){
             i++; sta++;
             $("#state").attr('class', 'form-control border border-danger');
@@ -332,6 +350,13 @@
             i++; mun++;
             $("#municipality").attr('class', 'form-control border border-danger');
             $("#municipality_e").html('El campo municipio es obligatorio.');
+
+        }
+
+        if(parroquia == "" || parroquia == "null"){
+            i++; par++;
+            $("#parroquia").attr('class', 'form-control border border-danger');
+            $("#parroquia_e").html('El campo parroquia es obligatorio.');
 
         }
 
@@ -374,10 +399,16 @@
             if (sta > 0) {
                 $("#state").val('null');
                 $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+                $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
             }
 
             if (mun > 0) {
                 $("#municipality").val('null');
+                $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+            }
+
+            if (par > 0) {
+                $("#parroquia").val('null');
             }
 
             if (car > 0) {
@@ -409,9 +440,10 @@
                 $("#email").val(email2);
             }
 
-            if (sta > 0 || mun > 0) {
+            if (sta > 0 || mun > 0 || par > 0) {
                 $("#state").val(state2);
                 combo("municipality", "state", state2, "municipality", municipality2, "municipio", "municipalitys", 1);
+                combo("parroquia", "municipality", municipality2, "parroquia", parroquia2, "parroquia", "parroquias", 1);
             }
 
             if (car > 0) {
@@ -440,6 +472,7 @@
     $("#email_e").html('');
     $("#state_e").html('');
     $("#municipality_e").html('');
+    $("#parroquia_e").html('');
     $("#direccion_e").html('');
     $("#cargo_e").html('');
     $("#cedula").attr('class', 'form-control');
@@ -450,12 +483,13 @@
     $("#email").attr('class', 'form-control');
     $("#state").attr('class', 'form-control');
     $("#municipality").attr('class', 'form-control');
+    $("#parroquia").attr('class', 'form-control');
     $("#direccion").attr('class', 'form-control');
     $("#cargo").attr('class', 'form-control');
 @endsection
 {{-- error en el registro o edicion --}}
 @section('error')
-    let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ema = 0; let sta = 0; let mun = 0; let car = 0; let dir = 0;
+    let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ema = 0; let sta = 0; let mun = 0; let par = 0; let car = 0; let dir = 0;
 
     if (xhr.responseJSON.errors.cedula){
         $("#cedula_e").html(xhr.responseJSON.errors.cedula);
@@ -505,6 +539,12 @@
         mun++;
     }
 
+    if (xhr.responseJSON.errors.parroquia){
+        $("#parroquia_e").html(xhr.responseJSON.errors.parroquia);
+        $("#parroquia").attr('class', 'form-control border border-danger');
+        mun++;
+    }
+
     if (xhr.responseJSON.errors.direccion){
         $("#direccion_e").html(xhr.responseJSON.errors.direccion);
         $("#direccion").attr('class', 'form-control border border-danger');
@@ -546,10 +586,16 @@
         if (sta > 0) {
             $("#state").val('null');
             $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+            $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
         }
 
         if (mun > 0) {
             $("#municipality").val('null');
+            $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+        }
+
+        if (par > 0) {
+            $("#parroquia").val('null');
         }
 
         if (car > 0) {
@@ -581,9 +627,10 @@
             $("#email").val($("#email2").val());
         }
 
-        if (sta > 0 || mun > 0) {
+        if (sta > 0 || mun > 00 || par > 0) {
             $("#state").val($("#state2").val());
             combo("municipality", "state", $("#state2").val(), "municipality", $("#municipality2").val(), "municipio", "municipalitys", 1);
+            combo("parroquia", "municipality", $("#municipality2").val(), "parroquia", $("#parroquia2").val(), "parroquia", "parroquias", 1);
         }
 
         if (car > 0) {

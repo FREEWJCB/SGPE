@@ -92,7 +92,7 @@
             <label for="cedula"><b>Cedula:</b></label>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" maxlength="8" onkeypress="return numero_e(event)" required id="cedula" name="cedula" />
-                <div data-turbolinks="false" class="input-group-append">
+                <div class="input-group-append">
                     <a href="#" style='display: none' id="cance" onclick = "return cancelar();" class="btn btn-danger btncolorblanco">
                         <i class="fa fa-times-circle"></i>
                     </a>

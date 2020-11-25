@@ -84,8 +84,15 @@
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="cedula"><b>Cedula:</b></label>
-            <input type="text" class="form-control" onkeypress="return numero_e(event)" maxlength="8" required id="cedula" name="cedula" />
-            <small id="cedula_e" style="color: red"></small>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" maxlength="8" onkeypress="return numero_e(event)" required id="cedula" name="cedula" />
+                <div class="input-group-append">
+                    <a href="#" style='display: none' id="cance" onclick = "return cancelar();" class="btn btn-danger btncolorblanco">
+                        <i class="fa fa-times-circle"></i>
+                    </a>
+                </div>
+                <small id="cedula_e" style="color: red"></small>
+            </div>
         </div>
 
         <div class="form-group col-md-4">

@@ -20,21 +20,31 @@
         cargar();
     });
 
+    $("#cedula").on("keyup", function() {
+        persona();
+    });
+
     $("#state").on("change", function() {
         let state = $("#state").val();
         combo("municipality", "state", state, "municipality", 0, "municipio", "municipalitys", 2);
     });
 
+    $("#municipality").on("change", function() {
+        let municipality = $("#municipality").val();
+        combo("parroquia", "municipality", municipality, "parroquia", 0, "parroquia", "parroquias", 2);
+    });
+
 @endsection
 
-@section('url_registro') var url = "{{ route('Representante.store') }}"; @endsection
+@section('url_registro') url = "{{ route('Representante.store') }}"; @endsection
 
-@section('url_edicion') var url = "{{ route('Representante.update') }}"; @endsection
+@section('url_edicion') url = "{{ route('Representante.update') }}"; @endsection
 
 @section('select')
 
 
     $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+    $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
 
 
 @endsection
@@ -49,6 +59,7 @@
     $('#ocupacion_laboral').val('null');
     $('#state').val('null');
     $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+    $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
     $('#direccion').val('');
 
 @endsection
@@ -61,6 +72,7 @@
     $('#telefono2').val($('#telefono').val());
     $('#ocupacion_laboral2').val($('#ocupacion_laboral').val());
     $('#municipality2').val($('#municipality').val());
+    $('#parroquia2').val($('#parroquia').val());
     $('#direccion2').val($('#direccion').val());
 
 
@@ -88,6 +100,8 @@
     $("#state").val(valores.state);
     combo("municipality", "state", valores.state, "municipality", valores.municipality, "municipio", "municipalitys", 1);
     $("#municipality2").val(valores.municipality);
+    combo("parroquia", "municipality", valores.municipality, "parroquia", valores.parroquia, "parroquia", "parroquias", 1);
+    $("#parroquia2").val(valores.parroquia);
     $("#direccion").val(valores.direccion);
     $("#direccion2").val(valores.direccion);
     $("#persona").val(valores.persona);
@@ -104,6 +118,7 @@
     $("#ocupacion_laboral").removeAttr("disabled");
     $("#state").removeAttr("disabled");
     $("#municipality").removeAttr("disabled");
+    $("#parroquia").removeAttr("disabled");
     $("#direccion").removeAttr("readonly");
 
 @endsection
@@ -118,6 +133,454 @@
     $("#ocupacion_laboral").attr("disabled", "disabled");
     $("#state").attr("disabled", "disabled");
     $("#municipality").attr("disabled", "disabled");
+    $("#parroquia").attr("disabled", "disabled");
     $("#direccion").attr("readonly", "readonly");
 
+@endsection
+
+{{-- funciones adicionales --}}
+@section('funciones')
+
+    function persona(){
+        let cedula = $("#cedula").val();
+        let persona = 'empleado';
+        $.ajax({
+            type: "POST",
+            url: "{{route('Persona.consulta')}}",
+            data: `persona=${persona}&cedula=${cedula}`,
+            success: function(registro) {
+                if (registro.boo == true){
+                    $("#cedula").attr("readonly", "readonly");
+                    $("#nombre").attr("readonly", "readonly");
+                    $("#apellido").attr("readonly", "readonly");
+                    $("#sex").attr("disabled", "disabled");
+                    $("#telefono").attr("readonly", "readonly");
+                    $("#state").attr("disabled", "disabled");
+                    $("#municipality").attr("disabled", "disabled");
+                    $("#parroquia").attr("disabled", "disabled");
+                    $("#direccion").attr("readonly", "readonly");
+
+                    $("#persona").val(registro.persona);
+                    $("#cedula").val(registro.cedula);
+                    $("#nombre").val(registro.nombre);
+                    $("#apellido").val(registro.apellido);
+                    $("#sex").val(registro.sex);
+                    $("#telefono").val(registro.telefono);
+                    $("#state").val(registro.state);
+                    combo("municipality", "state", registro.state, "municipality", registro.municipality, "municipio", "municipalitys", 1);
+                    combo("parroquia", "municiaplity", registro.municiaplity, "parroquia", registro.parroquia, "parroquia", "parroquias", 1);
+                    $("#direccion").val(registro.direccion);
+                    $("#cance").fadeIn();
+                }
+                console.log("%cConsulta realizado con éxito",'color:green;');
+                return false;
+            },
+            error: function(xhr, textStatus, errorMessage) {
+                {{-- error(xhr, textStatus, errorMessage); --}}
+            }
+        });
+        return false;
+    }
+
+    function cancelar(){
+        $("#cedula").attr("readonly", "readonly");
+        $("#nombre").removeAttr("readonly");
+        $("#apellido").removeAttr("readonly");
+        $("#sex").removeAttr("disabled");
+        $("#telefono").removeAttr("readonly");
+        $("#state").removeAttr("disabled");
+        $("#municipality").removeAttr("disabled");
+        $("#parroquia").removeAttr("disabled");
+        $("#direccion").removeAttr("readonly");
+
+        $("#persona").val('');
+        $("#cedula").val('');
+        $("#nombre").val('');
+        $("#apellido").val('');
+        $("#sex").val('');
+        $("#telefono").val('');
+        $("#state").val('null');
+        $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+        $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+        $("#direccion").val('');
+        $("#cance").fadeIn();
+    }
+@endsection
+
+{{-- funcion validacion --}}
+@section('validacion')
+
+    let persona = $("#persona").val();
+    let cedula = $("#cedula").val();
+    let nombre = $("#nombre").val(); let nombre2 = $("#nombre2").val();
+    let apellido = $("#apellido").val(); let apellido2 = $("#apellido2").val();
+    let sex = $("#sex").val(); let sex2 = $("#sex2").val();
+    let telefono = $("#telefono").val(); let telefono2 = $("#telefono2").val();
+    let ocupacion_laboral = $("#ocupacion_laboral").val(); let ocupacion_laboral2 = $("#ocupacion_laboral2").val();
+    let state = $("#state").val(); let state2 = $("#state2").val();
+    let municipality = $("#municipality").val(); let municipality2 = $("#municipality2").val();
+    let parroquia = $("#parroquia").val(); let parroquia2 = $("#parroquia2").val();
+    let direccion = $("#direccion").val(); let direccion2 = $("#direccion2").val();
+    let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ocu = 0; let sta = 0; let mun = 0; let par = 0; let dir = 0;
+
+    if(ocupacion_laboral == "" || ocupacion_laboral == "null"){
+        i++; ocu++;
+        $("#ocupacion_laboral").attr('class', 'form-control border border-danger');
+        $("#ocupacion_laboral_e").html('El campo ocupación laboral es obligatorio.');
+
+    }
+
+    if(persona == '' && pro == 'Registro' || pro == 'Edicion'){
+
+        if(pro == 'Registro'){
+            if(cedula == ""){
+                i++; ced++;
+                $("#cedula").attr('class', 'form-control border border-danger');
+                $("#cedula_e").html('El campo cedula es obligatorio.');
+
+            }else if(cedula.length > 8){
+                i++; ced++;
+                $("#cedula").attr('class', 'form-control border border-danger');
+                $("#cedula_e").html('El campo cedula no debe contener más de 8 caracteres.');
+
+            }else if(cedula.length < 7){
+                i++; ced++;
+                $("#cedula").attr('class', 'form-control border border-danger');
+                $("#cedula_e").html('El campo cedula debe contener al menos 7 caracteres.');
+
+            }
+        }
+
+        if(nombre == ""){
+            i++; nom++;
+            $("#nombre").attr('class', 'form-control border border-danger');
+            $("#nombre_e").html('El campo nombre es obligatorio.');
+
+        }else if(nombre.length > 255){
+            i++; nom++;
+            $("#nombre").attr('class', 'form-control border border-danger');
+            $("#nombre_e").html('El campo nombre no debe contener más de 255 caracteres.');
+
+        }else if(nombre.length < 3){
+            i++; nom++;
+            $("#nombre").attr('class', 'form-control border border-danger');
+            $("#nombre_e").html('El campo nombre debe contener al menos 03 caracteres.');
+
+        }
+
+        if(apellido == ""){
+            i++; ape++;
+            $("#apellido").attr('class', 'form-control border border-danger');
+            $("#apellido_e").html('El campo apellido es obligatorio.');
+
+        }else if(apellido.length > 255){
+            i++; ape++;
+            $("#apellido").attr('class', 'form-control border border-danger');
+            $("#apellido_e").html('El campo apellido no debe contener más de 255 caracteres.');
+
+        }else if(apellido.length < 3){
+            i++; ape++;
+            $("#apellido").attr('class', 'form-control border border-danger');
+            $("#apellido_e").html('El campo apellido debe contener al menos 03 caracteres.');
+
+        }
+
+        if(sex == "" || sex == "null"){
+            i++; se++;
+            $("#sex").attr('class', 'form-control border border-danger');
+            $("#sex_e").html('El campo sexo es obligatorio.');
+
+        }
+
+        if(telefono == ""){
+            i++; tel++;
+            $("#telefono").attr('class', 'form-control border border-danger');
+            $("#telefono_e").html('El campo telefono es obligatorio.');
+
+        }else if(telefono.length != 11){
+            i++; tel++;
+            $("#telefono").attr('class', 'form-control border border-danger');
+            $("#telefono_e").html('El campo telefono no debe contener más de 11 caracteres.');
+
+        }
+
+        if(state == "" || state == "null"){
+            i++; sta++;
+            $("#state").attr('class', 'form-control border border-danger');
+            $("#state_e").html('El campo estado es obligatorio.');
+
+        }
+
+        if(municipality == "" || municipality == "null"){
+            i++; mun++;
+            $("#municipality").attr('class', 'form-control border border-danger');
+            $("#municipality_e").html('El campo municipio es obligatorio.');
+
+        }
+
+        if(parroquia == "" || parroquia == "null"){
+            i++; par++;
+            $("#parroquia").attr('class', 'form-control border border-danger');
+            $("#parroquia_e").html('El campo parroquia es obligatorio.');
+
+        }
+
+        if(direccion == ""){
+            i++; dir++;
+            $("#direccion").attr('class', 'form-control border border-danger');
+            $("#direccion_e").html('El campo dirección es obligatorio.');
+
+        }
+    }
+
+    if(i > 0){
+
+        if(pro == 'Registro'){
+
+            if (ced > 0) {
+                $("#cedula").val('');
+            }
+
+            if (nom > 0) {
+                $("#nombre").val('');
+            }
+
+            if (ape > 0) {
+                $("#apellido").val('');
+            }
+
+            if (se > 0) {
+                $("#sex").val('null');
+            }
+
+            if (tel > 0) {
+                $("#telefono").val('');
+            }
+
+            if (ocu > 0) {
+                $("#ocupacion_laboral").val('null');
+            }
+
+            if (sta > 0) {
+                $("#state").val('null');
+                $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+                $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+            }
+
+            if (mun > 0) {
+                $("#municipality").val('null');
+                $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+            }
+
+            if (par > 0) {
+                $("#parroquia").val('null');
+            }
+
+            if (dir > 0) {
+                $("#direccion").val('');
+            }
+        }else{
+
+            if (nom > 0) {
+                $("#nombre").val(nombre2);
+            }
+
+            if (ape > 0) {
+                $("#apellido").val(apellido2);
+            }
+
+            if (se > 0) {
+                $("#sex").val(sex2);
+            }
+
+            if (tel > 0) {
+                $("#telefono").val(telefono2);
+            }
+
+            if (ocu > 0) {
+                $("#ocupacion_laboral").val(ocupacion_laboral2);
+            }
+
+            if (sta > 0 || mun > 0 || par > 0) {
+                $("#state").val(state2);
+                combo("municipality", "state", state2, "municipality", municipality2, "municipio", "municipalitys", 1);
+                combo("parroquia", "municipality", municipality2, "parroquia", parroquia2, "parroquia", "parroquias", 1);
+            }
+
+            if (dir > 0) {
+                $("#direccion").val(direccion2);
+            }
+
+        }
+        boo = false;
+        $("body").overhang({
+            type: "error",
+            message: message
+        });
+    }
+@endsection
+{{-- funcion reiniciar --}}
+@section('reiniciar')
+    $("#cedula_e").html('');
+    $("#nombre_e").html('');
+    $("#apellido_e").html('');
+    $("#sex_e").html('');
+    $("#telefono_e").html('');
+    $("#ocupacion_laboral_e").html('');
+    $("#state_e").html('');
+    $("#municipality_e").html('');
+    $("#parroquia_e").html('');
+    $("#direccion_e").html('');
+    $("#cedula").attr('class', 'form-control');
+    $("#nombre").attr('class', 'form-control');
+    $("#apellido").attr('class', 'form-control');
+    $("#sex").attr('class', 'form-control');
+    $("#telefono").attr('class', 'form-control');
+    $("#ocupacion_laboral").attr('class', 'form-control');
+    $("#state").attr('class', 'form-control');
+    $("#municipality").attr('class', 'form-control');
+    $("#parroquia").attr('class', 'form-control');
+    $("#direccion").attr('class', 'form-control');
+@endsection
+{{-- error en el registro o edicion --}}
+@section('error')
+    let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ocu = 0; let sta = 0; let mun = 0; let par = 0; let dir = 0;
+
+    if (xhr.responseJSON.errors.cedula){
+        $("#cedula_e").html(xhr.responseJSON.errors.cedula);
+        $("#cedula").attr('class', 'form-control border border-danger');
+        ced++;
+    }
+
+    if (xhr.responseJSON.errors.nombre){
+        $("#nombre_e").html(xhr.responseJSON.errors.nombre);
+        $("#nombre").attr('class', 'form-control border border-danger');
+        nom++;
+    }
+
+    if (xhr.responseJSON.errors.apellido){
+        $("#apellido_e").html(xhr.responseJSON.errors.apellido);
+        $("#apellido").attr('class', 'form-control border border-danger');
+        ape++;
+    }
+
+    if (xhr.responseJSON.errors.sex){
+        $("#sex_e").html(xhr.responseJSON.errors.sex);
+        $("#sex").attr('class', 'form-control border border-danger');
+        se++;
+    }
+
+    if (xhr.responseJSON.errors.telefono){
+        $("#telefono_e").html(xhr.responseJSON.errors.telefono);
+        $("#telefono").attr('class', 'form-control border border-danger');
+        tel++;
+    }
+
+    if (xhr.responseJSON.errors.ocupacion_laboral){
+        $("#ocupacion_laboral_e").html(xhr.responseJSON.errors.ocupacion_laboral);
+        $("#ocupacion_laboral").attr('class', 'form-control border border-danger');
+        ocu++;
+    }
+
+    if (xhr.responseJSON.errors.state){
+        $("#state_e").html(xhr.responseJSON.errors.state);
+        $("#state").attr('class', 'form-control border border-danger');
+        sta++;
+    }
+
+    if (xhr.responseJSON.errors.municipality){
+        $("#municipality_e").html(xhr.responseJSON.errors.municipality);
+        $("#municipality").attr('class', 'form-control border border-danger');
+        mun++;
+    }
+
+    if (xhr.responseJSON.errors.parroquia){
+        $("#parroquia_e").html(xhr.responseJSON.errors.parroquia);
+        $("#parroquia").attr('class', 'form-control border border-danger');
+        mun++;
+    }
+
+    if (xhr.responseJSON.errors.direccion){
+        $("#direccion_e").html(xhr.responseJSON.errors.direccion);
+        $("#direccion").attr('class', 'form-control border border-danger');
+        dir++;
+    }
+
+    if(pro == 'Registro'){
+
+        if (ced > 0) {
+            $("#cedula").val('');
+        }
+
+        if (nom > 0) {
+            $("#nombre").val('');
+        }
+
+        if (ape > 0) {
+            $("#apellido").val('');
+        }
+
+        if (se > 0) {
+            $("#sex").val('null');
+        }
+
+        if (tel > 0) {
+            $("#telefono").val('');
+        }
+
+        if (ocu > 0) {
+            $("#ocupacion_laboral").val('null');
+        }
+
+        if (sta > 0) {
+            $("#state").val('null');
+            $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+            $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+        }
+
+        if (mun > 0) {
+            $("#municipality").val('null');
+            $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+        }
+
+        if (par > 0) {
+            $("#parroquia").val('null');
+        }
+
+        if (dir > 0) {
+            $("#direccion").val('');
+        }
+    }else{
+
+        if (nom > 0) {
+            $("#nombre").val($("#nombre2").val());
+        }
+
+        if (ape > 0) {
+            $("#apellido").val($("#apellido2").val());
+        }
+
+        if (se > 0) {
+            $("#sex").val($("#sex2").val());
+        }
+
+        if (tel > 0) {
+            $("#telefono").val($("#telefono2").val());
+        }
+
+        if (ocu > 0) {
+            $("#ocupacion_laboral").val($("#ocupacion_laboral2").val());
+        }
+
+        if (sta > 0 || mun > 00 || par > 0) {
+            $("#state").val($("#state2").val());
+            combo("municipality", "state", $("#state2").val(), "municipality", $("#municipality2").val(), "municipio", "municipalitys", 1);
+            combo("parroquia", "municipality", $("#municipality2").val(), "parroquia", $("#parroquia2").val(), "parroquia", "parroquias", 1);
+        }
+
+        if (dir > 0) {
+            $("#direccion").val($("#direccion2").val());
+        }
+
+    }
 @endsection

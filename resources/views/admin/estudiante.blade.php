@@ -83,6 +83,8 @@
 @section('form')
     <input type="hidden" id="ventana" name="ventana" />
     <input type="hidden" id="persona" name="persona" />
+    <input type="hidden" id="persona_r" name="persona_r" />
+    <input type="hidden" id="persona_r2" name="persona_r2" />
     <input type="hidden" id="representante" name="representante" />
     <input type="hidden" id="representante2" name="representante2" />
     <div id="estudiante">

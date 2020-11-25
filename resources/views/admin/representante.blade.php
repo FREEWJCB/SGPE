@@ -81,6 +81,7 @@
 @section('form')
 
     <input type="hidden" id="persona" name="persona" />
+    <input type="hidden" value="false" id="persona_v" name="persona_v" />
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="cedula"><b>Cedula:</b></label>

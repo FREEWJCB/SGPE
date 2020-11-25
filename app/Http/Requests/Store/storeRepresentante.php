@@ -25,7 +25,30 @@ class storeRepresentante extends FormRequest
     public function rules()
     {
         return [
-            //
+            'persona_v' => 'required|bool',
+            'cedula' => ['exclude_if:persona_v,true','required','max:8','min:7'],
+            'nombre' => ['exclude_if:persona_v,true','required','max:255','min:3'],
+            'apellido' => ['exclude_if:persona_v,true','required','max:255','min:3'],
+            'sex' => ['exclude_if:persona_v,true','required',new NotNull()],
+            'telefono' => ['exclude_if:persona_v,true','required','max:11','min:11'],
+            'ocupacion_laboral' => ['required',new NotNull()],
+            'state' => ['exclude_if:persona_v,true','required',new NotNull()],
+            'municipality' => ['exclude_if:persona_v,true','required',new NotNull()],
+            'parroquia' => ['exclude_if:persona_v,true','required',new NotNull()],
+            'direccion' => ['exclude_if:persona_v,true','required']
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'cedula' => 'cédula',
+            'sex' => 'sexo',
+            'telefono' => 'teléfono',
+            'state' => 'estado',
+            'municipality' => 'municipio',
+            'direccion' => 'dirección',
+            'ocupacion_laboral' => 'ocupación laboral'
         ];
     }
 }

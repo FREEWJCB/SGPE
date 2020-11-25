@@ -3,9 +3,17 @@
 @section('contenido')
     <div class="box">
         <h2>Iniciar Sesión</h2>
-        <form action="{{ route('login') }}">
+         @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600" style="color:red;text-align: center;
+font-size: 1.2em;
+padding-bottom: 10px;">
+                {{ session('status') }}
+            </div>
+        @endif
+        <form method="POST" action="{{ route('logged_in') }}">
+        @csrf
             <div class="inputBox">
-                <input type="text" required name="username" id="username">
+                <input type="text" required name="email" id="username">
                 <label for="username">Nombre de usuario</label>
             </div>
             <div class="inputBox">

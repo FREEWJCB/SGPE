@@ -1,4 +1,3 @@
-
 @extends('plantilla.login')
 @section('contenido')
     <div class="box">

@@ -19,8 +19,8 @@
         </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/jquery.overlayScrollbars.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/admin.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.overlayScrollbars.min.js') }}" type="text/javascript"></script>
     <script type="text/javascript"> @include('js.combo') @include('js.crud') </script>
 
 </body>

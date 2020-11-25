@@ -35,7 +35,7 @@ class EmpleadoController extends Controller
         $state2 = $state->get();
         $num_state = $state->count();
 
-        return view('view.empleado',['cons' => $cons2, 'num' => $num, 'cargo' => $cargo2, 'num_cargo' => $num_cargo, 'state' => $state2, 'num_state' => $num_state, 'js' => $js]);
+        return view('admin.empleado',['cons' => $cons2, 'num' => $num, 'cargo' => $cargo2, 'num_cargo' => $num_cargo, 'state' => $state2, 'num_state' => $num_state, 'js' => $js]);
     }
 
     /**

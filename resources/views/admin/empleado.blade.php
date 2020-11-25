@@ -16,7 +16,7 @@
 @section('busqueda')
 
     <label for="bs_cedula"><b>Cédula:</b> &nbsp;&nbsp;&nbsp;</label>
-    <input name="bs_cedula" id="bs_cedula" maxlength="8" class="form-control mr-sm-2" type="number" placeholder="Buscar por cédula" arialabel="Search"/>
+    <input name="bs_cedula" id="bs_cedula" onkeypress="return numero_e(event)" maxlength="8" class="form-control mr-sm-2" type="text" placeholder="Buscar por cédula" arialabel="Search"/>
 
     <label for="bs_nombre"><b>Nombre:</b> &nbsp;&nbsp;&nbsp;</label>
     <input name="bs_nombre" id="bs_nombre" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por nombre" arialabel="Search"/>
@@ -85,9 +85,9 @@
 
     <input type="hidden" id="persona" name="persona" />
 
-    
+
     <div class="form-row">
-        
+
         <div class="form-group col-md-4">
             <label for="cedula"><b>Cedula:</b></label>
             <div class="input-group mb-3">
@@ -103,7 +103,7 @@
 
         <div class="form-group col-md-4">
             <label for="nombre"><b>Nombre:</b></label>
-            <input type="text" class="form-control" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" required id="nombre" name="nombre" />
+            <input type="text" class="form-control" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" required id="nombre" name="nombre"/>
             <input type="hidden" id="nombre2" name="nombre2" />
             <small id="nombre_e" style="color: red"></small>
         </div>
@@ -117,7 +117,7 @@
     </div>
 
     <div class="form-row">
-        
+
         <div class="form-group col-md-4">
             <label for="sex"><b>Sexo:</b></label>
             <select class="form-control" id="sex" name="sex">
@@ -169,6 +169,25 @@
         </div>
 
         <div class="form-group col-md-4">
+            <label for="parroquia"><b>Parroquia:</b></label>
+            <select class="form-control" required id="parroquia" name="parroquia">
+                <option value="null" disabled selected>Seleccione un parroquia</option>
+            </select>
+            <input type="hidden" id="parroquia2" name="parroquia2" />
+            <small id="parroquia_e" style="color: red"></small>
+        </div>
+        
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="direccion"><b>Dirección:</b></label>
+            <textarea class="form-control" required id="direccion" name="direccion" rows="3"></textarea>
+            <input type="hidden" id="direccion2" name="direccion2" />
+            <small id="direccion_e" style="color: red"></small>
+        </div>
+
+        <div class="form-group col-md-6">
             <label for="cargo"><b>Cargo:</b></label>
             <select class="form-control" required id="cargo" name="cargo">
                 <option value="null" disabled selected>Seleccione un cargo</option>
@@ -181,14 +200,6 @@
             <input type="hidden" id="cargo2" name="cargo2" />
             <small id="cargo_e" style="color: red"></small>
         </div>
-        
-    </div>
-
-    <div class="form-group">
-        <label for="direccion"><b>Dirección:</b></label>
-        <textarea class="form-control" required id="direccion" name="direccion" rows="3"></textarea>
-        <input type="hidden" id="direccion2" name="direccion2" />
-        <small id="direccion_e" style="color: red"></small>
     </div>
 
 @endsection

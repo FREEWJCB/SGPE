@@ -3,6 +3,7 @@
 @include('js.representante')
 
 @section('titulo','Representante')
+@section('modal','modal-lg')
 @section('inscripcion_m', 'menu-open')
 @section('inscripcion_o', 'active')
 @section('representante', 'active')
@@ -15,7 +16,7 @@
 @section('busqueda')
 
     <label for="bs_cedula"><b>Cédula:</b> &nbsp;&nbsp;&nbsp;</label>
-    <input name="bs_cedula" id="bs_cedula" maxlength="8" class="form-control mr-sm-2" type="number" placeholder="Buscar por cédula" arialabel="Search"/>
+    <input name="bs_cedula" id="bs_cedula" onkeypress="return numero_e(event)" maxlength="8" class="form-control mr-sm-2" type="text" placeholder="Buscar por cédula" arialabel="Search"/>
 
     <label for="bs_nombre"><b>Nombre:</b> &nbsp;&nbsp;&nbsp;</label>
     <input name="bs_nombre" id="bs_nombre" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" class="form-control mr-sm-2" type="text" placeholder="Buscar por nombre" arialabel="Search"/>
@@ -49,6 +50,7 @@
     <th scope="col"><center>Sexo</center></th>
     <th scope="col"><center>Estado</center></th>
     <th scope="col"><center>Municipio</center></th>
+    <th scope="col"><center>Parroquia</center></th>
     <th scope="col"><center>Labor</center></th>
 @endsection
 
@@ -65,6 +67,7 @@
                 <td><center>{{ $cons2->sex }}</center></td>
                 <td><center>{{ $cons2->states }}</center></td>
                 <td><center>{{ $cons2->municipalitys }}</center></td>
+                <td><center>{{ $cons2->parroquias }}</center></td>
                 <td><center>{{ $cons2->labor }}</center></td>
                 @include('plantilla.catalogo')
             </tr>
@@ -79,30 +82,29 @@
 
     <input type="hidden" id="persona" name="persona" />
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="cedula"><b>Cedula:</b></label>
-            <input type="number" class="form-control" maxlength="8" required id="cedula" name="cedula" />
+            <input type="text" class="form-control" onkeypress="return numero_e(event)" maxlength="8" required id="cedula" name="cedula" />
             <small id="cedula_e" style="color: red"></small>
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="nombre"><b>Nombre:</b></label>
-            <input type="text" class="form-control" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" required id="nombre" name="nombre" />
+            <input type="text" class="form-control" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" required id="nombre" name="nombre"/>
             <input type="hidden" id="nombre2" name="nombre2" />
             <small id="nombre_e" style="color: red"></small>
         </div>
 
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="apellido"><b>Apellido:</b></label>
             <input type="text" class="form-control" onkeyup="mayuscula(this)" onkeypress="return letra(event)" maxlength="255" required id="apellido" name="apellido" />
             <input type="hidden" id="apellido2" name="apellido2" />
             <small id="apellido_e" style="color: red"></small>
         </div>
+    </div>
 
-        <div class="form-group col-md-6">
+    <div class="form-row">
+        <div class="form-group col-md-4">
             <label for="sex"><b>Sexo:</b></label>
             <select class="form-control" required id="sex" name="sex">
                 <option value="null" disabled selected>Seleccione un sexo</option>
@@ -112,17 +114,15 @@
             <input type="hidden" id="sex2" name="sex2" />
             <small id="sex_e" style="color: red"></small>
         </div>
-    </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="telefono"><b>Telefono:</b></label>
-            <input type="tel" class="form-control" maxlength="11" required id="telefono" name="telefono" />
+            <input type="tel" class="form-control" onkeypress="return numero_e(event)" maxlength="11" required id="telefono" name="telefono" />
             <input type="hidden" id="telefono2" name="telefono2" />
             <small id="telefono_e" style="color: red"></small>
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="ocupacion_laboral"><b>Ocupación Laboral:</b></label>
             <select class="form-control" required id="ocupacion_laboral" name="ocupacion_laboral">
                 <option value="null" disabled selected>Seleccione un labor</option>
@@ -138,7 +138,7 @@
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="state"><b>Estado:</b></label>
             <select class="form-control" required id="state" name="state">
                 <option value="null" disabled selected>Seleccione un estado</option>
@@ -152,7 +152,7 @@
             <small id="state_e" style="color: red"></small>
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="municipality"><b>Municipio:</b></label>
             <select class="form-control" required id="municipality" name="municipality">
                 <option value="null" disabled selected>Seleccione un municipio</option>
@@ -160,11 +160,20 @@
             <input type="hidden" id="municipality2" name="municipality2" />
             <small id="municipality_e" style="color: red"></small>
         </div>
+
+        <div class="form-group col-md-4">
+            <label for="parroquia"><b>Parroquia:</b></label>
+            <select class="form-control" required id="parroquia" name="parroquia">
+                <option value="null" disabled selected>Seleccione un parroquia</option>
+            </select>
+            <input type="hidden" id="parroquia2" name="parroquia2" />
+            <small id="parroquia_e" style="color: red"></small>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="direccion"><b>Dirección:</b></label>
-        <textarea class="form-control" required id="direccion" name="direccion"></textarea>
+        <textarea class="form-control" required id="direccion" name="direccion" rows="3"></textarea>
         <input type="hidden" id="direccion2" name="direccion2" />
         <small id="direccion_e" style="color: red"></small>
     </div>
@@ -175,6 +184,5 @@
 @section('contenido')
 
     @include('plantilla.tabla')
-
 
 @endsection

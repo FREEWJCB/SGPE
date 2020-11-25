@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\loginController;
 
 use App\Http\Controllers\Ocupacion_LaboralController;
 use App\Http\Controllers\Tipo_UsuarioController;
@@ -38,8 +39,8 @@ use App\Http\Controllers\combo;
 */
 
 Route::get('/', function () {
-    // return view('index');
-    return view('admin.index');
+     return view('index');
+    // return view('admin.index');
 })->name('inicio');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -141,3 +142,6 @@ Route::resource('Asistencia', AsistenciaController::class)->except('show','edit'
 Route::resource('Permiso', PermisoController::class)->except('show','edit','create');
 
 Route::resource('combobox', combo::class)->only('store');
+
+// Login
+Route::post('logged_in', [loginController::class, 'authenticate'])->name('logged_in');

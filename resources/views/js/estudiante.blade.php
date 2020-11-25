@@ -923,18 +923,22 @@
     let persona_r = $("#persona_r").val(); let persona_r2 = $("#persona_r2").val();
     let representante = $("#representante").val(); let representante2 = $("#representante2").val();
     let cedula_r = $("#cedula_r").val();
-    let nombre_r = $("#nombre_r").val(); let nombre_r2 = $("#nombre_r2").val();
-    let apellido_r = $("#apellido_r").val(); let apellido_r2 = $("#apellido_r2").val();
-    let sex_r = $("#sex_r").val(); let sex_r2 = $("#sex_r2").val();
-    let telefono_r = $("#telefono_r").val(); let telefono_r2 = $("#telefono_r2").val();
-    let ocupacion_laboral = $("#ocupacion_laboral").val(); let ocupacion_laboral2 = $("#ocupacion_laboral2").val();
+    let nombre_r = $("#nombre_r").val();
+    let apellido_r = $("#apellido_r").val();
+    let sex_r = $("#sex_r").val();
+    let telefono_r = $("#telefono_r").val();
+    let ocupacion_laboral = $("#ocupacion_laboral").val();
     let parentesco = $("#parentesco").val(); let parentesco2 = $("#parentesco2").val();
-    let state_r = $("#state_r").val(); let state_r2 = $("#state_r2").val();
-    let municipality_r = $("#municipality_r").val(); let municipality_r2 = $("#municipality_r2").val();
-    let parroquia_r = $("#parroquia_r").val(); let parroquia_r2 = $("#parroquia_r2").val();
-    let direccion_r = $("#direccion_r").val(); let direccion_r2 = $("#direccion_r2").val();
+    let state_r = $("#state_r").val();
+    let municipality_r = $("#municipality_r").val();
+    let parroquia_r = $("#parroquia_r").val();
+    let direccion_r = $("#direccion_r").val();
     let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ocu = 0; let sta = 0; let mun = 0; let par = 0; let dir = 0; let pare = 0;
     
+    if(boo2 == false){
+        i++;
+    }
+
     if(parentesco == "" || parentesco == "null"){
         i++; pare++;
         $("#parentesco").attr('class', 'form-control border border-danger');
@@ -1053,91 +1057,60 @@
     }
     if(i > 0){
 
-        if(pro == 'Registro'){
+        if (boo == false) {
+            val_estudiante('no');
+        }
 
-            if (ced > 0) {
-                $("#cedula_r").val('');
-            }
+        if (pare > 0) {
+            $("#parentesco").val('null');
+        }
 
-            if (nom > 0) {
-                $("#nombre_r").val('');
-            }
-
-            if (ape > 0) {
-                $("#apellido_r").val('');
-            }
-
-            if (se > 0) {
-                $("#sex_r").val('null');
-            }
-
-            if (tel > 0) {
-                $("#telefono_r").val('');
-            }
-
+        if(representante_r == ''){
             if (ocu > 0) {
                 $("#ocupacion_laboral").val('null');
             }
+            if(persona_r == ''){
 
-            if (pare > 0) {
-                $("#parentesco").val('null');
+                if (ced > 0) {
+                    $("#cedula_r").val('');
+                }
+    
+                if (nom > 0) {
+                    $("#nombre_r").val('');
+                }
+    
+                if (ape > 0) {
+                    $("#apellido_r").val('');
+                }
+    
+                if (se > 0) {
+                    $("#sex_r").val('null');
+                }
+    
+                if (tel > 0) {
+                    $("#telefono_r").val('');
+                }
+    
+                if (sta > 0) {
+                    $("#state_r").val('null');
+                    $('#municipality_r').html('<option value="null" disabled selected>Seleccione un municipio</option>');
+                    $('#parroquia_r').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+                }
+    
+                if (mun > 0) {
+                    $("#municipality_r").val('null');
+                    $('#parroquia_r').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
+                }
+    
+                if (par > 0) {
+                    $("#parroquia_r").val('null');
+                }
+    
+                if (dir > 0) {
+                    $("#direccion_r").val('');
+                }
+            
             }
-
-            if (sta > 0) {
-                $("#state_r").val('null');
-                $('#municipality_r').html('<option value="null" disabled selected>Seleccione un municipio</option>');
-                $('#parroquia_r').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
-            }
-
-            if (mun > 0) {
-                $("#municipality_r").val('null');
-                $('#parroquia_r').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
-            }
-
-            if (par > 0) {
-                $("#parroquia_r").val('null');
-            }
-
-            if (dir > 0) {
-                $("#direccion_r").val('');
-            }
-        }else{
-
-            if (nom > 0) {
-                $("#nombre_r").val(nombre2);
-            }
-
-            if (ape > 0) {
-                $("#apellido_r").val(apellido2);
-            }
-
-            if (se > 0) {
-                $("#sex_r").val(sex2);
-            }
-
-            if (tel > 0) {
-                $("#telefono_r").val(telefono2);
-            }
-
-            if (ocu > 0) {
-                $("#ocupacion_laboral").val(ocupacion_laboral2);
-            }
-
-            if (pare > 0) {
-                $("#parentesco").val(parentesco2);
-            }
-
-            if (sta > 0 || mun > 0 || par > 0) {
-                $("#state_r").val(state2);
-                combo("municipality", "state", state2, "municipality_r", municipality2, "municipio", "municipalitys", 1);
-                combo("parroquia", "municipality", municipality2, "parroquia_r", parroquia2, "parroquia", "parroquias", 1);
-            }
-
-            if (dir > 0) {
-                $("#direccion_r").val(direccion_r2);
-            }
-            $("#persona_r").val(persona_r2);
-            $("#representante_r").val(representante_r2);
         }
         boo = false;
         $("body").overhang({
@@ -1477,50 +1450,9 @@
             $("#descripcion").val($("#descripcion").val());
         }
 
-        if (nom_r > 0) {
-            $("#nombre_r").val($("#nombre_r2").val());
-        }
-
-        if (ape_r > 0) {
-            $("#apellido_r").val($("#apellido_r2").val());
-        }
-
-        if (se_r > 0) {
-            $("#sex_r").val($("#sex_r2").val());
-        }
-
-        if (tel_r > 0) {
-            $("#telefono_r").val($("#telefono_r2").val());
-        }
-
-        if (fec_r > 0) {
-            $("#fecha_nacimiento_r").val($("#fecha_nacimiento_r2").val());
-        }
-
-        if (lug > 0) {
-            $("#lugar_nacimiento_r").val($("#lugar_nacimiento_r2").val());
-        }
-
-        if (sta_r > 0 || mun_r > 00 || par_r > 0) {
-            $("#state_r").val($("#state_r2").val());
-            combo("municipality", "state", $("#state_r2").val(), "municipality_r", $("#municipality_r2").val(), "municipio", "municipalitys", 1);
-            combo("parroquia", "municipality", $("#municipality_r2").val(), "parroquia_r", $("#parroquia_r2").val(), "parroquia", "parroquias", 1);
-        }
-
-        if (dir_r > 0) {
-            $("#direccion_r").val($("#direccion_r2").val());
-        }
-
-
-        if (ocu > 0) {
-            $("#ocupacion_laboral").val($("#ocupacion_laboral2").val());
-        }
-        
         if (pare > 0) {
             $("#parentesco").val($("#parentesco2").val());
         }
-        $("#persona_r").val($("#persona_r2").val());
-        $("#representante").val($("#representante2").val());
     }
 @endsection
 {{-- </script> --}}

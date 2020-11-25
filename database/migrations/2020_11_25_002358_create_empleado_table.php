@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordTable extends Migration
+class CreateEmpleadoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreatePasswordTable extends Migration
      */
     public function up()
     {
-        Schema::create('password', function (Blueprint $table) {
+        Schema::create('empleado', function (Blueprint $table) {
             $table->id();
-            $table->string('passw',100);
-            $table->unsignedBigInteger('usuario');
+            $table->string('email',100)->unique();
+            $table->unsignedBigInteger('cargo');
+            $table->unsignedBigInteger('persona');
             $table->decimal('status',1,0)->default(1);
-            $table->foreign('usuario')->references('id')->on('usuario');
+            $table->foreign('cargo')->references('id')->on('cargo');
+            $table->foreign('persona')->references('id')->on('persona');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreatePasswordTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password');
+        Schema::dropIfExists('empleado');
     }
 }

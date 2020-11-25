@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRepresentanteTable extends Migration
+class CreatePasswordTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateRepresentanteTable extends Migration
      */
     public function up()
     {
-        Schema::create('representante', function (Blueprint $table) {
+        Schema::create('password', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('persona');
-            $table->unsignedBigInteger('ocupacion_laboral');
+            $table->string('passw',100);
+            $table->unsignedBigInteger('usuario');
             $table->decimal('status',1,0)->default(1);
-            $table->foreign('ocupacion_laboral')->references('id')->on('ocupacion_laboral');
-            $table->foreign('persona')->references('id')->on('persona');
+            $table->foreign('usuario')->references('id')->on('usuario');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateRepresentanteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('representante');
+        Schema::dropIfExists('password');
     }
 }

@@ -586,6 +586,7 @@ class EstudianteController extends Controller
         $num_p="0";
         $num_r="0";
         $num_e="0";
+        $num_es="0";
         $cons= Persona::select('persona.*', 'parroquia.municipality', 'municipality.state')
                 ->join([
                     ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
@@ -606,16 +607,18 @@ class EstudianteController extends Controller
                 $telefono=$cons2->telefono;
                 $state=$cons2->state;
                 $municipality=$cons2->municipality;
+                $parroquia=$cons2->parroquia;
                 $direccion=$cons2->direccion;
             }
 
             $cons= Representante::where('persona', $persona);
             $consu= Empleado::where('persona', $persona);
+            $consul= Estudiante::where('persona', $persona);
 
             $cons1 = $cons->get();
-            $consu1 = $consu->get();
             $num_r = $cons->count();
             $num_e = $consu->count();
+            $num_es = $consul->count();
 
             if ($num_r>0) {
                 # code...
@@ -625,10 +628,8 @@ class EstudianteController extends Controller
                     $ocupacion_laboral=$cons2->ocupacion_laboral;
                 }
             }
+
         }
-
-
-
 
         return response()->json([
             'id'=>$id,
@@ -639,10 +640,13 @@ class EstudianteController extends Controller
             'ocupacion_laboral'=>$ocupacion_laboral,
             'state'=>$state,
             'municipality'=>$municipality,
+            'parroquia'=>$parroquia,
             'direccion'=>$direccion,
+            'persona'=>$persona,
             'num_p'=>$num_p,
             'num_r'=>$num_r,
-            'num_e'=>$num_e
+            'num_e'=>$num_e,
+            'num_e'=>$num_es
         ]);
 
 

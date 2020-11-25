@@ -54,7 +54,7 @@
 @endsection
 {{-- reinicio de registro --}}
 @section('registro')
-
+    $("#persona_v").val(false);
     $('#persona').val('');
     $('#cedula').val('');
     $('#nombre').val('');
@@ -171,31 +171,40 @@
         let persona = 'empleado';
         $.ajax({
             type: "POST",
-            url: "{{route('Persona.consulta')}}",
+            url: "{{route('Persona.persona')}}",
             data: `persona=${persona}&cedula=${cedula}`,
             success: function(registro) {
-                if (registro.boo == true){
-                    $("#cedula").attr("readonly", "readonly");
-                    $("#nombre").attr("readonly", "readonly");
-                    $("#apellido").attr("readonly", "readonly");
-                    $("#sex").attr("disabled", "disabled");
-                    $("#telefono").attr("readonly", "readonly");
-                    $("#state").attr("disabled", "disabled");
-                    $("#municipality").attr("disabled", "disabled");
-                    $("#parroquia").attr("disabled", "disabled");
-                    $("#direccion").attr("readonly", "readonly");
+                if (registro.num_p > 0){
+                    if (registro.num_e == 0 && registro.num_es == 0){
+                        $("#cedula").attr("readonly", "readonly");
+                        $("#nombre").attr("readonly", "readonly");
+                        $("#apellido").attr("readonly", "readonly");
+                        $("#sex").attr("disabled", "disabled");
+                        $("#telefono").attr("readonly", "readonly");
+                        $("#state").attr("disabled", "disabled");
+                        $("#municipality").attr("disabled", "disabled");
+                        $("#parroquia").attr("disabled", "disabled");
+                        $("#direccion").attr("readonly", "readonly");
 
-                    $("#persona").val(registro.persona);
-                    $("#cedula").val(registro.cedula);
-                    $("#nombre").val(registro.nombre);
-                    $("#apellido").val(registro.apellido);
-                    $("#sex").val(registro.sex);
-                    $("#telefono").val(registro.telefono);
-                    $("#state").val(registro.state);
-                    combo("municipality", "state", registro.state, "municipality", registro.municipality, "municipio", "municipalitys", 1);
-                    combo("parroquia", "municiaplity", registro.municiaplity, "parroquia", registro.parroquia, "parroquia", "parroquias", 1);
-                    $("#direccion").val(registro.direccion);
-                    $("#cance").fadeIn();
+                        $("#persona_v").val(true);
+                        $("#persona").val(registro.persona);
+                        $("#cedula").val(registro.cedula);
+                        $("#nombre").val(registro.nombre);
+                        $("#apellido").val(registro.apellido);
+                        $("#sex").val(registro.sex);
+                        $("#telefono").val(registro.telefono);
+                        $("#state").val(registro.state);
+                        combo("municipality", "state", registro.state, "municipality", registro.municipality, "municipio", "municipalitys", 1);
+                        combo("parroquia", "municiaplity", registro.municiaplity, "parroquia", registro.parroquia, "parroquia", "parroquias", 1);
+                        $("#direccion").val(registro.direccion);
+                        $("#cance").fadeIn();
+                    }else if (registro.num_e > 0){
+                        $("#cedula").attr('class', 'form-control border border-danger');
+                        $("#cedula_e").html('El valor del campo cédula ya está en uso.');
+                    }else if (registro.num_es > 0){
+                        $("#cedula").attr('class', 'form-control border border-danger');
+                        $("#cedula_e").html('El valor del campo cédula ya está en uso en un estudiante.');
+                    }
                 }
                 console.log("%cConsulta realizado con éxito",'color:green;');
                 return false;
@@ -208,7 +217,7 @@
     }
 
     function cancelar(){
-        $("#cedula").attr("readonly", "readonly");
+        $("#cedula").removeAttr("readonly");
         $("#nombre").removeAttr("readonly");
         $("#apellido").removeAttr("readonly");
         $("#sex").removeAttr("disabled");
@@ -218,6 +227,7 @@
         $("#parroquia").removeAttr("disabled");
         $("#direccion").removeAttr("readonly");
 
+        $("#persona_v").val(false);
         $("#persona").val('');
         $("#cedula").val('');
         $("#nombre").val('');
@@ -235,6 +245,7 @@
 {{-- funcion validacion --}}
 @section('validacion')
 
+    let persona_v = $("#persona_v").val();
     let persona = $("#persona").val();
     let cedula = $("#cedula").val();
     let nombre = $("#nombre").val(); let nombre2 = $("#nombre2").val();
@@ -265,7 +276,7 @@
 
     }
     
-    if(persona == '' && pro == 'Registro' || pro == 'Edicion'){
+    if(persona == '' && pro == 'Registro' && persona_v == false || pro == 'Edicion'){
 
         if(pro == 'Registro'){
             if(cedula == ""){

@@ -442,7 +442,7 @@
         var cedula = $('#cedula_r').val();
         $.ajax({
             type: "POST",
-            url:"{{route('Estudiante.representante')}}",
+            url:"{{route('Persona.persona')}}",
             data: "cedula="+cedula,
             beforeSend: function() {
                 $("#cedula_r").attr("readonly", "readonly");
@@ -459,37 +459,46 @@
                 $("#direccion_r").val('');
             },
             success: function(valores) {
+                
                 if(valores.num_p > 0){
-                    $("#repre").fadeOut();
-                    $("#persona").val(valores.persona);
-                    $("#nombre_r").val(valores.nombre);
-                    $("#apellido_r").val(valores.apellido);
-                    $("#sex_r").val(valores.sex);
-                    $("#telefono_r").val(valores.telefono);
-                    $("#state_r").val(valores.state);
-                    combo("municipality","state",valores.state,"municipality_r",valores.municipality,"municipio","municipalitys",1);
-                    combo("parroquia","municipality",valores.municipality,"parroquia_r",valores.parroquia,"parroquia","parroquia",1);
-                    $("#direccion_r").val(valores.direccion);
-                    $("#nombre_r").attr("readonly", "readonly");
-                    $("#apellido_r").attr("readonly", "readonly");
-                    $("#sex_r").attr("disabled", "disabled");
-                    $("#telefono_r").attr("readonly", "readonly");
-                    $("#state_r").attr("disabled", "disabled");
-                    $("#municipality_r").attr("disabled", "disabled");
-                    $("#parroquia_r").attr("disabled", "disabled");
-                    $("#direccion_r").attr("readonly", "readonly");
+                    if(valores.num_es == 0){
+                        $("#repre").fadeOut();
+                        $("#persona").val(valores.persona);
+                        $("#nombre_r").val(valores.nombre);
+                        $("#apellido_r").val(valores.apellido);
+                        $("#sex_r").val(valores.sex);
+                        $("#telefono_r").val(valores.telefono);
+                        $("#state_r").val(valores.state);
+                        combo("municipality","state",valores.state,"municipality_r",valores.municipality,"municipio","municipalitys",1);
+                        combo("parroquia","municipality",valores.municipality,"parroquia_r",valores.parroquia,"parroquia","parroquia",1);
+                        $("#direccion_r").val(valores.direccion);
+                        $("#nombre_r").attr("readonly", "readonly");
+                        $("#apellido_r").attr("readonly", "readonly");
+                        $("#sex_r").attr("disabled", "disabled");
+                        $("#telefono_r").attr("readonly", "readonly");
+                        $("#state_r").attr("disabled", "disabled");
+                        $("#municipality_r").attr("disabled", "disabled");
+                        $("#parroquia_r").attr("disabled", "disabled");
+                        $("#direccion_r").attr("readonly", "readonly");
 
-                    if(valores.num_r > 0){
-                        $("#representante").val(valores.id);
-                        $("#ocupacion_laboral").val(valores.ocupacion_laboral);
-                        $("#ocupacion_laboral").attr("disabled", "disabled");
+                        if(valores.num_r > 0){
+                            $("#representante").val(valores.id);
+                            $("#ocupacion_laboral").val(valores.ocupacion_laboral);
+                            $("#ocupacion_laboral").attr("disabled", "disabled");
+                        }else{
+                            $("#representante").val("");
+                            $("#ocupacion_laboral").val("null");
+                            $("#ocupacion_laboral").removeAttr("disabled");
+                        }
+
+                        $("#cance").fadeIn();
                     }else{
-                        $("#representante").val("");
-                        $("#ocupacion_laboral").val("null");
-                        $("#ocupacion_laboral").removeAttr("disabled");
+                        cancelar();
+                        $("#cedula_r").attr('');
+                        $("#cedula_r").attr('class', 'form-control border border-danger');
+                        $("#cedula_r_e").html('El valor del campo cédula ya está en uso en un estudiante.');
                     }
-
-                    $("#cance").fadeIn();
+                    
                 }else{
                     $("#cance").fadeOut();
                     $("#cedula_r").removeAttr("readonly");

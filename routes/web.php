@@ -128,12 +128,11 @@ Route::POST('/Estudiante/clear_a', [EstudianteController::class,'clear_a'])->nam
 Route::POST('/Estudiante/clear_d', [EstudianteController::class,'clear_d'])->name('Estudiante.clear_d');
 Route::POST('/Estudiante/alergias', [EstudianteController::class,'alergias'])->name('Estudiante.alergias');
 Route::POST('/Estudiante/discapacidades', [EstudianteController::class,'discapacidades'])->name('Estudiante.discapacidades');
-Route::POST('/Estudiante/representante', [EstudianteController::class,'representante'])->name('Estudiante.representante');
 Route::POST('/Estudiante/quitar_a', [EstudianteController::class,'quitar_a'])->name('Estudiante.quitar_a');
 Route::POST('/Estudiante/quitar_d', [EstudianteController::class,'quitar_d'])->name('Estudiante.quitar_d');
 Route::POST('/Estudiante/combobox', [EstudianteController::class,'combobox'])->name('Estudiante.combobox');
 
-Route::POST('Persona', [EstudianteController::class,'consulta'])->name('Persona.consulta');
+Route::POST('Persona', [EstudianteController::class,'persona'])->name('Persona.persona');
 
 Route::resource('Inscripcion', InscripcionController::class)->except('show','edit','create');
 Route::resource('Horario', HorarioController::class)->except('show','edit','create');

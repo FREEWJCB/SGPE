@@ -38,7 +38,7 @@
 
 @section('url_registro') url = "{{ route('Representante.store') }}"; @endsection
 
-@section('url_edicion') url = "{{ route('Representante.update') }}"; @endsection
+@section('url_edicion') url = `{{url('Representante')}}/${id}`; @endsection
 
 @section('select')
 
@@ -79,7 +79,7 @@
 
  @endsection
 
-@section('delete') url: "{{url('Representante')}}"+"/"+id, @endsection
+@section('delete') url: `{{url('Representante')}}/${id}`, @endsection
 
 @section('cargar') url: "{{route('Representante.cargar')}}", @endsection
 
@@ -144,12 +144,12 @@
 
     function persona(){
         let cedula = $("#cedula").val();
-        let persona = 'empleado';
         $.ajax({
             type: "POST",
             url: "{{route('Persona.persona')}}",
-            data: `persona=${persona}&cedula=${cedula}`,
+            data: `cedula=${cedula}`,
             success: function(registro) {
+                console.log(registro);
                 if (registro.num_p > 0){
                     if (registro.num_r == 0 && registro.num_es == 0){
                         $("#cedula").attr("readonly", "readonly");
@@ -161,7 +161,7 @@
                         $("#municipality").attr("disabled", "disabled");
                         $("#parroquia").attr("disabled", "disabled");
                         $("#direccion").attr("readonly", "readonly");
-
+                        console.log("%cConsulta realizado con éxito",'color:yellow;');
                         $("#persona_v").val(true);
                         $("#persona").val(registro.persona);
                         $("#cedula").val(registro.cedula);
@@ -171,7 +171,7 @@
                         $("#telefono").val(registro.telefono);
                         $("#state").val(registro.state);
                         combo("municipality", "state", registro.state, "municipality", registro.municipality, "municipio", "municipalitys", 1);
-                        combo("parroquia", "municiaplity", registro.municiaplity, "parroquia", registro.parroquia, "parroquia", "parroquias", 1);
+                        combo("parroquia", "municipality", registro.municipality, "parroquia", registro.parroquia, "parroquia", "parroquias", 1);
                         $("#direccion").val(registro.direccion);
                         $("#cance").fadeIn();
                     }else if (registro.num_r > 0){
@@ -186,7 +186,7 @@
                 return false;
             },
             error: function(xhr, textStatus, errorMessage) {
-                {{-- error(xhr, textStatus, errorMessage); --}}
+                error(xhr, textStatus, errorMessage);
             }
         });
         return false;

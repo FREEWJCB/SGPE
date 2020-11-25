@@ -188,8 +188,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview @yield('empleado_m')">
-                    <a href="#" class="nav-link @yield('empleado_o')">
+                <li class="nav-item has-treeview @yield('empleados_m')">
+                    <a href="#" class="nav-link @yield('empleados_o')">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
                             Empleado

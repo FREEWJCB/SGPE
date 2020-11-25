@@ -168,11 +168,11 @@
 
     function persona(){
         let cedula = $("#cedula").val();
-        let persona = 'empleado';
+        console.log(cedula);
         $.ajax({
             type: "POST",
             url: "{{route('Persona.persona')}}",
-            data: `persona=${persona}&cedula=${cedula}`,
+            data: `cedula=${cedula}`,
             success: function(registro) {
                 console.log(registro);
                 if (registro.num_p > 0){

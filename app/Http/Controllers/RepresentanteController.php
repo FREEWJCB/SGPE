@@ -22,13 +22,12 @@ class RepresentanteController extends Controller
     {
         //
         $cons = Representante::select('representante.*', 'ocupacion_laboral.labor', 'state.states', 'municipality.municipalitys', 'parroquia.parroquias', 'persona.cedula', 'persona.nombre', 'persona.apellido', 'persona.sex', 'persona.telefono')
-                    ->join([
-                        ['ocupacion_laboral', 'representante.ocupacion_laboral', '=', 'ocupacion_laboral.id'],
-                        ['persona', 'representante.persona', '=', 'persona.id'],
-                        ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
-                        ['municipality', 'parroquia.municipality', '=', 'municipality.id'],
-                        ['state', 'municipality.state', '=', 'state.id']
-                    ])->where('representante.status', '1')->orderBy('cedula','asc');
+                    ->join('ocupacion_laboral', 'representante.ocupacion_laboral', '=', 'ocupacion_laboral.id')
+                    ->join('persona', 'representante.persona', '=', 'persona.id')
+                    ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+                    ->join('state', 'municipality.state', '=', 'state.id')
+                    ->where('representante.status', '1')->orderBy('cedula','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
 
@@ -101,13 +100,11 @@ class RepresentanteController extends Controller
         $sex=$request->bs_sex;
         $ocupacion_laboral=$request->bs_ocupacion_laboral;
         $cons = Representante::select('representante.*', 'ocupacion_laboral.labor', 'state.states', 'municipality.municipalitys', 'parroquia.parroquias', 'persona.cedula', 'persona.nombre', 'persona.apellido', 'persona.sex', 'persona.telefono')
-                    ->join([
-                        ['ocupacion_laboral', 'representante.ocupacion_laboral', '=', 'ocupacion_laboral.id'],
-                        ['persona', 'representante.persona', '=', 'persona.id'],
-                        ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
-                        ['municipality', 'persona.parroquia', '=', 'municipality.id'],
-                        ['state', 'municipality.state', '=', 'state.id']
-                    ])
+                    ->join('ocupacion_laboral', 'representante.ocupacion_laboral', '=', 'ocupacion_laboral.id')
+                    ->join('persona', 'representante.persona', '=', 'persona.id')
+                    ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+                    ->join('state', 'municipality.state', '=', 'state.id')
                     ->where([
                         ['representante.status', '1'],
                         ['cedula','like', "%$cedula%"],
@@ -169,11 +166,9 @@ class RepresentanteController extends Controller
     {
         //
         $representante= Representante::find($request->id)
-                 ->join([
-                     ['persona', 'representante.persona', '=', 'persona.id'],
-                     ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
-                     ['municipality', 'parroquia.municipality', '=', 'municipality.id']
-                 ]);
+                ->join('persona', 'representante.persona', '=', 'persona.id')
+                ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                ->join('municipality', 'parroquia.municipality', '=', 'municipality.id');
 
         return response()->json([
             'cedula'=>$representante->cedula,

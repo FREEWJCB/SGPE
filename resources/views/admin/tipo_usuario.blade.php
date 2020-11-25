@@ -3,8 +3,8 @@
 @include('js.tipo_usuario')
 
 @section('titulo','Tipo Usuario')
-@section('empleado_m', 'menu-open')
-@section('empleado_o', 'active')
+@section('empleados_m', 'menu-open')
+@section('empleados_o', 'active')
 @section('tipo_usuario', 'active')
 
 @section('address')

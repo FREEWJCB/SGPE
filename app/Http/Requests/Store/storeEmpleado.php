@@ -37,7 +37,7 @@ class storeEmpleado extends FormRequest
             'parroquia' => ['exclude_if:persona_v,true','required',new NotNull()],
             'direccion' => ['exclude_if:persona_v,true','required'],
             'cargo' => ['required',new NotNull()],
-            // 'email' => 'email:rfc,dns',Rule::unique('empleado')->where('status', 1)
+            'email' => ['email:rfc,dns',Rule::unique('empleado')->where('status', 1)]
         ];
     }
 

@@ -103,7 +103,7 @@
 
 @section('url_registro') url = "{{ route('Estudiante.store') }}"; @endsection
 
-@section('url_edicion') url = "{{ route('Estudiante.update') }}"; @endsection
+@section('url_edicion') url = `{{url('Representante')}}/${id}`; @endsection
 
 @section('select') limpiar(); @endsection
 
@@ -128,7 +128,7 @@
 
  @endsection
 
-@section('delete') url: "{{url('Estudiante')}}"+"/"+id, @endsection
+@section('delete') url: `{{url('Representante')}}/${id}`, @endsection
 
 @section('cargar') url: "{{route('Estudiante.cargar')}}", @endsection
 
@@ -965,7 +965,7 @@
 
     }
     
-    if(representante_r == '' && representante_v == false){
+    if(representante_v == '' && representante_v == false){
         if(ocupacion_laboral == "" || ocupacion_laboral == "null"){
             i++; ocu++;
             $("#ocupacion_laboral").attr('class', 'form-control border border-danger');

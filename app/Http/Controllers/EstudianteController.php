@@ -12,6 +12,7 @@ use App\Models\Empleado;
 use App\Models\State;
 use App\Models\Tipo_alergia;
 use App\Models\Tipo_discapacidad;
+use App\Models\Parentesco;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class EstudianteController extends Controller
@@ -48,7 +49,11 @@ class EstudianteController extends Controller
         $tipod2 = $tipod->get();
         $num_tipod = $tipod->count();
 
-        return view('admin.Estudiante',['cons' => $cons2, 'num' => $num, 'state' => $state2, 'num_state' => $num_state, 'ocupacion_laboral' => $ocupacion_laboral2, 'num_ocupacion_laboral' => $num_ocupacion_laboral,'tipoa' => $tipoa2, 'num_tipoa' => $num_tipoa,'tipod' => $tipod2, 'num_tipod' => $num_tipod]);
+        $parentesco = Parentesco::where('status', '1')->orderBy('parentescos','asc');
+        $parentesco2 = $parentesco->get();
+        $num_parentesco = $parentesco->count();
+
+        return view('admin.Estudiante',['cons' => $cons2, 'num' => $num, 'state' => $state2, 'num_state' => $num_state, 'ocupacion_laboral' => $ocupacion_laboral2, 'num_ocupacion_laboral' => $num_ocupacion_laboral,'tipoa' => $tipoa2, 'num_tipoa' => $num_tipoa,'tipod' => $tipod2, 'num_tipod' => $num_tipod,'parentesco' => $parentesco2, 'num_parentesco' => $num_parentesco]);
     }
 
     /**
@@ -577,6 +582,7 @@ class EstudianteController extends Controller
         $cedula=$request->cedula;
         $id="";
         $nombre="";
+        
         $apellido="";
         $sex="";
         $telefono="";
@@ -602,6 +608,7 @@ class EstudianteController extends Controller
             foreach ($cons1 as $cons2) {
                 # code...
                 $persona=$cons2->id;
+                $cedula=$cons2->cedula;
                 $nombre=$cons2->nombre;
                 $apellido=$cons2->apellido;
                 $sex=$cons2->sex;
@@ -634,6 +641,7 @@ class EstudianteController extends Controller
 
         return response()->json([
             'id'=>$id,
+            'cedula'=>$cedula,
             'nombre'=>$nombre,
             'apellido'=>$apellido,
             'sex'=>$sex,

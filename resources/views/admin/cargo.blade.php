@@ -3,8 +3,8 @@
 @include('js.cargo')
 
 @section('titulo','Cargo')
-@section('empleado_m', 'menu-open')
-@section('empleado_o', 'active')
+@section('empleados_m', 'menu-open')
+@section('empleados_o', 'active')
 @section('cargo', 'active')
 
 @section('address')

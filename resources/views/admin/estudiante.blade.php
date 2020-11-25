@@ -52,6 +52,7 @@
     <th scope="col"><center>Lugar de nacimiento</center></th>
     <th scope="col"><center>Estado</center></th>
     <th scope="col"><center>Municipio</center></th>
+    <th scope="col"><center>Parroquias</center></th>
 
 @endsection
 
@@ -70,6 +71,7 @@
                 <td><center>{{ $cons2->lugar_nacimiento }}</center></td>
                 <td><center>{{ $cons2->states }}</center></td>
                 <td><center>{{ $cons2->municipalitys }}</center></td>
+                <td><center>{{ $cons2->parroquias }}</center></td>
 
                 @include('plantilla.catalogo')
             </tr>
@@ -349,7 +351,7 @@
                         <option value="null" disabled selected>Seleccione un parentesco</option>
                         @if ($num_parentesco>0)
                             @foreach ($parentesco as $parentesco2)
-                                <option value="{{ $parentesco2->id }}">{{ $parentesco2->labor }}</option>
+                                <option value="{{ $parentesco2->id }}">{{ $parentesco2->parentescos }}</option>
                             @endforeach
                         @endif
                     </select>

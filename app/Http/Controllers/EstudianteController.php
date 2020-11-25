@@ -24,14 +24,11 @@ class EstudianteController extends Controller
     public function index()
     {
         //
-        $cons = Estudiante::select('estudiante.*','persona.cedula','persona.nombre','persona.apellido','persona.sex','municipality.municipalitys','state.states')
-                    ->join([
-                        ['persona', 'estudiante.persona', '=', 'persona.id'],
-                        ['municipality', 'persona.municipality', '=', 'municipality.id'],
-                        ['state', 'municipality.state', '=', 'state.id']
-                    ])
-                    ->where('estudiante.status', '1')
-                    ->orderBy('cedula','asc');
+        $cons = Estudiante::select('estudiante.*','persona.cedula','persona.nombre','persona.apellido','persona.sex','municipality.municipalitys','parroquia.parroquias','state.states')
+                    ->join('persona', 'estudiante.persona', '=', 'persona.id')
+                    ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+                    ->join('state', 'municipality.state', '=', 'state.id')->where('estudiante.status', '1')->orderBy('cedula','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
 
@@ -66,6 +63,8 @@ class EstudianteController extends Controller
         $fecha_nacimiento=$request->fecha_nacimiento;
         $lugar_nacimiento=$request->lugar_nacimiento;
         $descripcion=$request->descripcion;
+        $persona_v=$request->persona_v;
+        $representante_v=$request->representante_v;
         $persona_r=$request->persona;
         $representante=$request->representante;
         $cedula_r=$request->cedula_r;
@@ -118,7 +117,7 @@ class EstudianteController extends Controller
                     ]);
             }
         }
-        if ($persona_r == null) {
+        if ($persona_v == "false") {
             # code...
             $persona_r = Persona::create([
                 'cedula' => $cedula_r,
@@ -130,12 +129,11 @@ class EstudianteController extends Controller
                 'municipality' => $municipality_r
                 ]);
 
-
         }else{
             $persona_r = Persona::find($persona_r);
         }
 
-        if ($representante == null) {
+        if ($representante_v == "false") {
             # code...
             $representante = Representante::create([
                 'ocupacion_laboral' => $ocupacion_laboral,
@@ -189,12 +187,11 @@ class EstudianteController extends Controller
         $nombre=$request->bs_nombre;
         $apellido=$request->bs_apellido;
         $sex=$request->bs_sex;
-        $cons = Estudiante::select('estudiante.*','persona.cedula','persona.nombre','persona.apellido','persona.sex','municipality.municipalitys','state.states')
-                    ->join([
-                        ['persona', 'estudiante.persona', '=', 'persona.id'],
-                        ['municipality', 'persona.municipality', '=', 'municipality.id'],
-                        ['state', 'municipality.state', '=', 'state.id']
-                    ])
+        $cons = Estudiante::select('estudiante.*','persona.cedula','persona.nombre','persona.apellido','persona.sex','municipality.municipalitys','parroquia.parroquias','state.states')
+                    ->join('persona', 'estudiante.persona', '=', 'persona.id')
+                    ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+                    ->join('state', 'municipality.state', '=', 'state.id')
                     ->where([
                         ['estudiante.status', '1'],
                         ['cedula','like', "%$cedula%"],
@@ -220,6 +217,7 @@ class EstudianteController extends Controller
                 $lugar_nacimiento=$cons2->lugar_nacimiento;
                 $states=$cons2->states;
                 $municipalitys=$cons2->municipalitys;
+                $parroquias=$cons2->parroquias;
                 $cat.="<tr>
                         <th scope='row'><center>$i</center></th>
                         <td><center>$cedula</center></td>
@@ -229,6 +227,7 @@ class EstudianteController extends Controller
                         <td><center>$lugar_nacimiento</center></td>
                         <td><center>$states</center></td>
                         <td><center>$municipalitys</center></td>
+                        <td><center>$parroquias</center></td>
                         <td>
                             <center data-turbolinks='false' class='navbar navbar-light'>
                                 <a onclick = \"return mostrar($id,'Mostrar');\" class='btn btn-info btncolorblanco' href='#' >
@@ -255,18 +254,18 @@ class EstudianteController extends Controller
     public function mostrar(Request $request)
     {
         //
-        $estudiante = Estudiante::find($request->id)->select('estudiante.*','persona.cedula','persona.nombre','persona.apellido','persona.sex','persona.telefono','persona.municipality','persona.direccion','municipality.state')
-        ->join([
-            ['persona', 'estudiante.persona', '=', 'persona.id'],
-            ['municipality', 'persona.municipality', '=', 'municipality.id']
-        ]);
+        $estudiante = Estudiante::find($request->id)->select('estudiante.*','persona.cedula','persona.nombre','persona.apellido','persona.sex','persona.telefono','persona.parroquia','persona.direccion','parroquia.municipality','municipality.state')
+        ->join('persona', 'estudiante.persona', '=', 'persona.id')
+        ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+        ->join('municipality', 'parroquia.municipality', '=', 'municipality.id');
 
         $cons= DB::table('estudiante_representante')
-        ->join(
-            ['representante', 'estudiante_representante.representante', '=', 'representante.id'],
-            ['persona', 'representante.persona', '=', 'persona.id'],
-            ['municipality', 'persona.municipality', '=', 'municipality.id']
-        )
+        ->join([
+            ['persona', 'estudiante.persona', '=', 'persona.id'],
+            ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
+            ['municipality', 'parroquia.municipality', '=', 'municipality.id'],
+            ['state', 'municipality.state', '=', 'state.id']
+        ])
         ->where([
             ['estudiante_representante.status', 1],
             ['estudiante', $estudiante->id]
@@ -285,6 +284,7 @@ class EstudianteController extends Controller
             $direccion_r=$cons2->direccion;
             $state_r=$cons2->state;
             $municipality_r=$cons2->municipality;
+            $parroquia_r=$cons2->parroquia;
             $ocupacion_laboral=$cons2->ocupacion_laboral;
 
         }
@@ -376,6 +376,7 @@ class EstudianteController extends Controller
             'descripcion'=>$estudiante->descripcion,
             'state'=>$estudiante->state,
             'municipality'=>$estudiante->municipality,
+            'parroquia'=>$estudiante->parroquia,
             'representante'=>$representante,
             'parentesco'=>$parentesco,
             'cedula_r'=>$cedula_r,
@@ -386,6 +387,7 @@ class EstudianteController extends Controller
             'direccion_r'=>$direccion_r,
             'state_r'=>$state_r,
             'municipality_r'=>$municipality_r,
+            'parroquia_r'=>$parroquia_r,
             'ocupacion_laboral'=>$ocupacion_laboral,
             'list_a'=>$list_a,
             'list_d'=>$list_d,
@@ -581,6 +583,7 @@ class EstudianteController extends Controller
         $ocupacion_laboral="";
         $state="";
         $municipality="";
+        $parroquia="";
         $direccion="";
         $persona="";
         $num_p="0";
@@ -588,10 +591,8 @@ class EstudianteController extends Controller
         $num_e="0";
         $num_es="0";
         $cons= Persona::select('persona.*', 'parroquia.municipality', 'municipality.state')
-                ->join([
-                    ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
-                    ['municipality', 'persona.parroquia', '=', 'municipality.id'],
-                ])
+                ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
                 ->where('cedula', $cedula);
         $cons1 = $cons->get();
         $num_p = $cons->count();
@@ -646,7 +647,7 @@ class EstudianteController extends Controller
             'num_p'=>$num_p,
             'num_r'=>$num_r,
             'num_e'=>$num_e,
-            'num_e'=>$num_es
+            'num_es'=>$num_es
         ]);
 
 

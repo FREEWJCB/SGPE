@@ -52,7 +52,12 @@ class RepresentanteController extends Controller
     public function store(storeRepresentante $request)
     {
         //
-        $persona = Persona::create($request->all());
+        $persona_v = $request->persona_v;
+        if($persona_v == "false"){
+            $persona = Persona::create($request->all());
+        }else{
+            $persona = Persona::find($request->persona);
+        }
 
         DB::table('representante')->insert([
             'ocupacion_laboral' => $request->ocupacion_laboral,
@@ -167,7 +172,7 @@ class RepresentanteController extends Controller
                  ->join([
                      ['persona', 'representante.persona', '=', 'persona.id'],
                      ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
-                     ['municipality', 'persona.parroquia', '=', 'municipality.id']
+                     ['municipality', 'parroquia.municipality', '=', 'municipality.id']
                  ]);
 
         return response()->json([
@@ -179,6 +184,7 @@ class RepresentanteController extends Controller
             'direccion'=>$representante->direccion,
             'state'=>$representante->state,
             'municipality'=>$representante->municipality,
+            'parroquia'=>$representante->parroquia,
             'ocupacion_laboral'=>$representante->ocupacion_laboral,
             'persona'=>$representante->persona
         ]);

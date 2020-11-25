@@ -181,13 +181,7 @@
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="direccion"><b>Dirección:</b></label>
-            <textarea class="form-control" required id="direccion" name="direccion" rows="3"></textarea>
-            <input type="hidden" id="direccion2" name="direccion2" />
-            <small id="direccion_e" style="color: red"></small>
-        </div>
-
+        
         <div class="form-group col-md-6">
             <label for="cargo"><b>Cargo:</b></label>
             <select class="form-control" required id="cargo" name="cargo">
@@ -201,8 +195,16 @@
             <input type="hidden" id="cargo2" name="cargo2" />
             <small id="cargo_e" style="color: red"></small>
         </div>
+
+        <div class="form-group col-md-6">
+            <label for="direccion"><b>Dirección:</b></label>
+            <textarea class="form-control" required id="direccion" name="direccion" rows="3"></textarea>
+            <input type="hidden" id="direccion2" name="direccion2" />
+            <small id="direccion_e" style="color: red"></small>
+        </div>
     </div>
 
+    
 @endsection
 
 @section('contenido')

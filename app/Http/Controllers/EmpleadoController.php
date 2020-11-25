@@ -19,10 +19,11 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
-        $cons = Empleado::select('empleado.*', 'cargo.cargos', 'state.states', 'municipality.municipalitys', 'persona.cedula', 'persona.nombre', 'persona.apellido', 'persona.sex', 'persona.telefono')
+        $cons = Empleado::select('empleado.*', 'cargo.cargos', 'state.states', 'municipality.municipalitys', 'parroquia.parroquias', 'persona.cedula', 'persona.nombre', 'persona.apellido', 'persona.sex', 'persona.telefono')
                     ->join('cargo', 'empleado.cargo', '=', 'cargo.id')
                     ->join('persona', 'empleado.persona', '=', 'persona.id')
-                    ->join('municipality', 'persona.municipality', '=', 'municipality.id')
+                    ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
                     ->join('state', 'municipality.state', '=', 'state.id')->where('empleado.status', '1')->orderBy('cedula','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
@@ -47,7 +48,13 @@ class EmpleadoController extends Controller
     public function store(storeEmpleado $request)
     {
         //
-        $persona = Persona::create($request->all());
+        $persona_v = $request->persona_v;
+        if($persona_v == "false"){
+            $persona = Persona::create($request->all());
+        }else{
+            $persona = Persona::find($request->persona);
+        }
+        
 
         Empleado::create([
             'email' => $request->email,
@@ -94,13 +101,12 @@ class EmpleadoController extends Controller
         $sex=$request->bs_sex;
         $email=$request->bs_email;
         $cargo=$request->bs_cargo;
-        $cons = Empleado::select('empleado.*', 'cargo.cargos', 'state.states', 'municipality.municipalitys', 'persona.cedula', 'persona.nombre', 'persona.apellido', 'persona.sex', 'persona.telefono')
-                    ->join([
-                        ['cargo', 'empleado.cargo', '=', 'cargo.id'],
-                        ['persona', 'empleado.persona', '=', 'persona.id'],
-                        ['municipality', 'persona.municipality', '=', 'municipality.id'],
-                        ['state', 'municipality.state', '=', 'state.id']
-                        ])
+        $cons = Empleado::select('empleado.*', 'cargo.cargos', 'state.states', 'municipality.municipalitys', 'parroquia.parroquias', 'persona.cedula', 'persona.nombre', 'persona.apellido', 'persona.sex', 'persona.telefono')
+                    ->join('cargo', 'empleado.cargo', '=', 'cargo.id')
+                    ->join('persona', 'empleado.persona', '=', 'persona.id')
+                    ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+                    ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+                    ->join('state', 'municipality.state', '=', 'state.id')
                     ->where([
                         ['empleado.status', '1'],
                         ['cedula','like', "%$cedula%"],
@@ -166,7 +172,8 @@ class EmpleadoController extends Controller
         $empleado = Empleado::find($request->id)
                     ->join([
                         ['persona', 'empleado.persona', '=', 'persona.id'],
-                        ['municipality', 'persona.municipality', '=', 'municipality.id']
+                        ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
+                        ['municipality', 'parroquia.municipality', '=', 'municipality.id']
                     ]);
 
         return response()->json([
@@ -178,6 +185,7 @@ class EmpleadoController extends Controller
             'direccion'=>$empleado->direccion,
             'state'=>$empleado->state,
             'municipality'=>$empleado->municipality,
+            'parroquia'=>$empleado->parroquia,
             'email'=>$empleado->email,
             'cargo'=>$empleado->cargo,
             'persona'=>$empleado->persona

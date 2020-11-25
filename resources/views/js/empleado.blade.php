@@ -174,6 +174,7 @@
             url: "{{route('Persona.persona')}}",
             data: `persona=${persona}&cedula=${cedula}`,
             success: function(registro) {
+                console.log(registro);
                 if (registro.num_p > 0){
                     if (registro.num_e == 0 && registro.num_es == 0){
                         $("#cedula").attr("readonly", "readonly");
@@ -185,7 +186,7 @@
                         $("#municipality").attr("disabled", "disabled");
                         $("#parroquia").attr("disabled", "disabled");
                         $("#direccion").attr("readonly", "readonly");
-
+                        console.log("%cConsulta realizado con éxito",'color:yellow;');
                         $("#persona_v").val(true);
                         $("#persona").val(registro.persona);
                         $("#cedula").val(registro.cedula);
@@ -210,7 +211,7 @@
                 return false;
             },
             error: function(xhr, textStatus, errorMessage) {
-                {{-- error(xhr, textStatus, errorMessage); --}}
+                error(xhr, textStatus, errorMessage);
             }
         });
         return false;

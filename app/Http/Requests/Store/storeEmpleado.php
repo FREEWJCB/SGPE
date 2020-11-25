@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Store;
 
+use App\Rules\NotNull;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,7 +26,7 @@ class storeEmpleado extends FormRequest
     public function rules()
     {
         return [
-            'persona_v' => 'required|bool',
+            'persona_v' => 'required',
             'cedula' => ['exclude_if:persona_v,true','required','max:8','min:7'],
             'nombre' => ['exclude_if:persona_v,true','required','max:255','min:3'],
             'apellido' => ['exclude_if:persona_v,true','required','max:255','min:3'],
@@ -36,7 +37,7 @@ class storeEmpleado extends FormRequest
             'parroquia' => ['exclude_if:persona_v,true','required',new NotNull()],
             'direccion' => ['exclude_if:persona_v,true','required'],
             'cargo' => ['required',new NotNull()],
-            'email' => 'email:rfc,dns',Rule::unique('empleado')->where('status', 1)
+            // 'email' => 'email:rfc,dns',Rule::unique('empleado')->where('status', 1)
         ];
     }
 

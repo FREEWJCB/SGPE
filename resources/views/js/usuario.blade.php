@@ -286,8 +286,8 @@
 
         }else if(password == password2){
             i++; pas2++;
-            $("#password2").attr('class', 'form-control border border-danger');
-            $("#password2_e").html('Las contraseñas no coinciden.');
+            {{-- $("#password2").attr('class', 'form-control border border-danger'); --}}
+            {{-- $("#password2_e").html('Las contraseñas no coinciden.'); --}}
         }
     }else if(tipo == tipo2){
         tip++;
@@ -324,7 +324,7 @@
             }
 
             if (pas2 > 0) {
-                $("#password2").val('');
+                {{-- $("#password2").val(''); --}}
             }
 
         }else{
@@ -333,11 +333,11 @@
                 $("#tipo").val(tipo2);
             }
         }
-        boo = false;
-        $("body").overhang({
+        boo = true;
+        {{-- $("body").overhang({
             type: "error",
             message: message
-        });
+        }); --}}
     }
 @endsection
 

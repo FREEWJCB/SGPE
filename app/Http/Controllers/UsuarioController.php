@@ -104,11 +104,9 @@ class UsuarioController extends Controller
         $tipo=$request->bs_tipo;
         $username=$request->bs_username;
         $cons = Usuario::select('usuario.*','empleado.*','persona.*','tipo_usuario.tipo as tip')
-                    ->join([
-                        ['tipo_usuario', 'usuario.tipo', '=', 'tipo_usuario.id'],
-                        ['empleado', 'usuario.empleado', '=', 'empleado.id'],
-                        ['persona', 'empleado.persona', '=', 'persona.id']
-                    ])->where([
+                    ->join('tipo_usuario', 'usuario.tipo', '=', 'tipo_usuario.id')
+                    ->join('empleado', 'usuario.empleado', '=', 'empleado.id')
+                    ->join('persona', 'empleado.persona', '=', 'persona.id')->where([
                         ['usuario.status', '1'],
                         ['cedula','like', "%$cedula%"],
                         ['nombre','like', "%$nombre%"],
@@ -192,10 +190,9 @@ class UsuarioController extends Controller
         $nombre="";
         $cargo="";
         $cons= Empleado::select('empleado.*', 'cargo.cargos', 'persona.cedula', 'persona.nombre', 'persona.apellido')
-                ->join([
-                    ['cargo', 'empleado.cargo', '=', 'cargo.id'],
-                    ['persona', 'empleado.persona', '=', 'persona.id']
-                ])->where('cedula', $cedula);
+                ->join('cargo', 'empleado.cargo', '=', 'cargo.id')
+                ->join('persona', 'empleado.persona', '=', 'persona.id')
+                ->where('cedula', $cedula);
 
         $cons1 = $cons->get();
         $num = $cons->count();

@@ -462,6 +462,7 @@
                 
                 if(valores.num_p > 0){
                     if(valores.num_es == 0){
+                        $("#persona_v").val(true);
                         $("#repre").fadeOut();
                         $("#persona").val(valores.persona);
                         $("#nombre_r").val(valores.nombre);
@@ -485,7 +486,9 @@
                             $("#representante").val(valores.id);
                             $("#ocupacion_laboral").val(valores.ocupacion_laboral);
                             $("#ocupacion_laboral").attr("disabled", "disabled");
+                            $("#representante_v").val(true);
                         }else{
+                            $("#representante_v").val(false);
                             $("#representante").val("");
                             $("#ocupacion_laboral").val("null");
                             $("#ocupacion_laboral").removeAttr("disabled");
@@ -500,8 +503,9 @@
                     }
                     
                 }else{
+                    $("#persona_v").val(false);
+                    $("#representante_v").val(false);
                     $("#cance").fadeOut();
-                    $("#cedula_r").removeAttr("readonly");
                     $("#cedula_r").removeAttr("readonly");
                     $("#nombre_r").removeAttr("readonly");
                     $("#apellido_r").removeAttr("readonly");
@@ -528,6 +532,8 @@
     }
 
     function cancelar() {
+        $("#persona_v").val(false);
+        $("#representante_v").val(false);
         $("#cance").fadeOut();
         $("#repre").fadeIn();
         $("#formu").slideUp();
@@ -548,6 +554,8 @@
     function limpiar() {
         clear();
         estudiante();
+        $("#persona_v").val(false);
+        $("#representante_v").val(false);
         $("#siguiente").attr("class", "btn btn-secondary");
         $("#siguiente").attr("disabled", "disabled");
         $("#button_salud").attr("class", "btn btn-secondary");
@@ -928,6 +936,8 @@
 @section('validacion')
 
     let boo2 = validacion_estudiante('si');
+    let persona_v = $("#persona_v").val();
+    let representante_v = $("#representante_v").val();
     let persona = $("#persona").val();
     let persona_r = $("#persona_r").val(); let persona_r2 = $("#persona_r2").val();
     let representante = $("#representante").val(); let representante2 = $("#representante2").val();
@@ -955,14 +965,14 @@
 
     }
     
-    if(representante_r == ''){
+    if(representante_r == '' && representante_v == false){
         if(ocupacion_laboral == "" || ocupacion_laboral == "null"){
             i++; ocu++;
             $("#ocupacion_laboral").attr('class', 'form-control border border-danger');
             $("#ocupacion_laboral_e").html('El campo ocupación laboral es obligatorio.');
     
         }
-        if(persona_r == ''){
+        if(persona_r == '' && persona_v == false){
 
             if(cedula_r == ""){
                 i++; ced++;

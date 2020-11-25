@@ -47,7 +47,7 @@
 
 {{-- boton nuevo --}}
 @section('select')
-
+    $("#persona_v").val(false);
     $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
     $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
 

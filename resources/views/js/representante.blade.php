@@ -42,7 +42,7 @@
 
 @section('select')
 
-
+    $("#persona_v").val(false);
     $('#municipality').html('<option value="null" disabled selected>Seleccione un municipio</option>');
     $('#parroquia').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
 
@@ -241,7 +241,7 @@
 
     }
 
-    if(persona == '' && pro == 'Registro' || pro == 'Edicion'){
+    if(persona == '' && pro == 'Registro' && persona_v == false || pro == 'Edicion'){
 
         if(pro == 'Registro'){
             if(cedula == ""){

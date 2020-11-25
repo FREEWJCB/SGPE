@@ -20,7 +20,7 @@ class Ocupacion_LaboralController extends Controller
         $cons = Ocupacion_laboral::where('status', '1')->orderBy('labor','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.ocupacion_laboral',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.ocupacion_laboral',['cons' => $cons2, 'num' => $num, 'js' => $js]);
     }
 
     /**

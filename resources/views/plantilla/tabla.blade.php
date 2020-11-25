@@ -14,7 +14,9 @@
             <a href="#" data-toggle="dropdown" id="nuevo" class="btn btn-info btncolorblanco">
                 <i class="fas fa-user-plus"></i> Nuevo
             </a>
-
+            
+            @yield('reporte')
+              
         </form>
     </nav>
     <!-- catalogo -->

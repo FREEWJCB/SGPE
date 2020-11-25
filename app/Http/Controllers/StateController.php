@@ -21,7 +21,7 @@ class StateController extends Controller
         $cons = State::where('status', '1')->orderBy('states','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.state',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.state',['cons' => $cons2, 'num' => $num, 'js' => $js]);
     }
 
     /**

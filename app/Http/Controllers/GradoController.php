@@ -21,7 +21,7 @@ class GradoController extends Controller
         $cons = Grado::where('status', '1')->orderBy('grados','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.grado',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.grado',['cons' => $cons2, 'num' => $num, 'js' => $js]);
     }
 
     /**

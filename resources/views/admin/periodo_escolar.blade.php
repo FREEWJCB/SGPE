@@ -58,6 +58,12 @@
 
 @endsection
 
+@section('reporte')
+<a href="{{ URL::to('imprimirPeriodoEscolar?export=pdf') }}" id="reporte" class="btn btn-success ml-1" target="_blank">
+                <i class="fas fa-user-plus"></i>Reporte
+            </a>
+@endsection
+
 @section('thead2')
     <tr>
         <th scope="col" colspan="3"><center>Profesor</center></th>

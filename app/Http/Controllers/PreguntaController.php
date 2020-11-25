@@ -26,7 +26,7 @@ class PreguntaController extends Controller
         $cursos = DB::table('cursos')->where('status', '1')->orderBy('curso','asc');
         $cursos2 = $cursos->get();
         $num_curso = $cursos->count();
-        return view('view.Pregunta',['cons' => $cons2, 'num' => $num,'cursos' => $cursos2, 'num_curso' => $num_curso, 'js' => $js]);
+        return view('admin.Pregunta',['cons' => $cons2, 'num' => $num,'cursos' => $cursos2, 'num_curso' => $num_curso, 'js' => $js]);
     }
 
     /**

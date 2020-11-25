@@ -20,7 +20,7 @@ class Tipo_UsuarioController extends Controller
         $cons = Tipo_usuario::where('status', '1')->orderBy('tipo','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
-        return view('view.tipo_usuario',['cons' => $cons2, 'num' => $num, 'js' => $js]);
+        return view('admin.tipo_usuario',['cons' => $cons2, 'num' => $num, 'js' => $js]);
     }
 
     /**

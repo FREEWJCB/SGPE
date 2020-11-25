@@ -13,6 +13,12 @@
     <li class="breadcrumb-item active">Empleado</li>
 @endsection
 
+@section('reporte')
+ <a href="{{ URL::to('imprimirEmpleado?export=pdf') }}" id="reporte" class="btn btn-success ml-1" target="_blank">
+		<i class="fas fa-print"></i> Reporte
+            </a>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_cedula"><b>Cédula:</b> &nbsp;&nbsp;&nbsp;</label>

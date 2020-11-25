@@ -31,7 +31,7 @@ class ParroquiaController extends Controller
         $state2 = $state->get();
         $num_state = $state->count();
 
-        return view('view.parroquia',['cons' => $cons2, 'num' => $num, 'num_state' => $num_state, 'state' => $state2, 'js' => $js]);
+        return view('admin.parroquia',['cons' => $cons2, 'num' => $num, 'num_state' => $num_state, 'state' => $state2, 'js' => $js]);
     }
 
     /**

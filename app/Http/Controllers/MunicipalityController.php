@@ -30,7 +30,7 @@ class MunicipalityController extends Controller
         $state2 = $state->get();
         $num_state = $state->count();
 
-        return view('view.municipality',['cons' => $cons2, 'num' => $num, 'num_state' => $num_state, 'state' => $state2, 'js' => $js]);
+        return view('admin.municipality',['cons' => $cons2, 'num' => $num, 'num_state' => $num_state, 'state' => $state2, 'js' => $js]);
     }
 
     /**

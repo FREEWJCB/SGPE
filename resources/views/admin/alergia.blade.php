@@ -13,6 +13,12 @@
     <li class="breadcrumb-item active">Alergia</li>
 @endsection
 
+@section('reporte')
+<a href="{{ URL::to('imprimirAlergia?export=pdf') }}" id="reporte" class="btn btn-success ml-1" target="_blank">
+                <i class="fas fa-user-plus"></i>Reporte
+            </a>
+@endsection
+
 @section('busqueda')
 
     <label for="bs_tipo"><b>Tipo:</b> &nbsp;&nbsp;&nbsp;</label>

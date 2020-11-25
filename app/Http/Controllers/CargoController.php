@@ -21,6 +21,7 @@ class CargoController extends Controller
         $cons = Cargo::where('status', '1')->orderBy('cargos','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
+        
         return view('admin.cargo',['cons' => $cons2, 'num' => $num]);
     }
 

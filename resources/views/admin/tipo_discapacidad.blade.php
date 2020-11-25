@@ -20,6 +20,13 @@
 
 @endsection
 
+@section('reporte')
+<a href="{{ URL::to('imprimirTipoDiscapacidad?export=pdf') }}" id="reporte" class="btn btn-success ml-1" target="_blank">
+                <i class="fas fa-user-plus"></i>Reporte
+            </a>
+@endsection
+
+
 @section('thead')
 
     <th scope="col"><center>Tipo</center></th>

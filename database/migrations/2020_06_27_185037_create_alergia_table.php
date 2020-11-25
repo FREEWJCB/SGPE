@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateAlergiaTable extends Migration
 {
@@ -22,15 +23,25 @@ class CreateAlergiaTable extends Migration
             $table->timestamps();
             $table->foreign('tipo')->references('id')->on('tipo_alergia');
         });
+        
+        DB::statement('CREATE OR REPLACE VIEW view_municipality as
+                                        SELECT
+                                      a.descripcion,
+                                      a.alergias,
+                                      ta.tipo,
+                                      a.created_at
+                                      FROM alergia a
+                                      INNER JOIN tipo_alergia ta
+                                      ON ta.id = a.tipo;
+                              ');
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
+        // Eliminar Vista view_alergia
+        DB::statement("DROP VIEW IF EXISTS view_alergia");
+
         Schema::dropIfExists('alergia');
     }
 }

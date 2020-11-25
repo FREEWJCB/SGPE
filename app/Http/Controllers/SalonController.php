@@ -20,6 +20,7 @@ class SalonController extends Controller
         $cons = Salon::where('status', '1')->orderBy('salones','asc');
         $cons2 = $cons->get();
         $num = $cons->count();
+
         return view('admin.salon',['cons' => $cons2, 'num' => $num]);
     }
 

@@ -44,7 +44,7 @@ $(document).ready(function() {
         $("#reg").show();
         @yield('select')
         reiniciar("Registro");
-        $("#modal").modal({
+        window.$("#modal").modal({
             show: true,
             backdrop: "static"
         });

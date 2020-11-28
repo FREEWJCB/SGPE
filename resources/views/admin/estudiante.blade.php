@@ -49,10 +49,7 @@
     <th scope="col"><center>Nombre y Apellido</center></th>
     <th scope="col"><center>Sexo</center></th>
     <th scope="col"><center>Fecha de Nacimiento</center></th>
-    <th scope="col"><center>Lugar de nacimiento</center></th>
-    <th scope="col"><center>Estado</center></th>
-    <th scope="col"><center>Municipio</center></th>
-    <th scope="col"><center>Parroquias</center></th>
+    
 
 @endsection
 
@@ -68,11 +65,6 @@
                 <td><center>{{ $cons2->nombre }} {{ $cons2->apellido }}</center></td>
                 <td><center>{{ $cons2->sex }}</center></td>
                 <td><center>{{ $cons2->fecha_nacimiento }}</center></td>
-                <td><center>{{ $cons2->lugar_nacimiento }}</center></td>
-                <td><center>{{ $cons2->states }}</center></td>
-                <td><center>{{ $cons2->municipalitys }}</center></td>
-                <td><center>{{ $cons2->parroquias }}</center></td>
-
                 @include('plantilla.catalogo')
             </tr>
         @endforeach

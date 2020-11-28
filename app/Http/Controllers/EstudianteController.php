@@ -219,20 +219,12 @@ class EstudianteController extends Controller
                 $nombre="$cons2->nombre $cons2->apellido";
                 $sex=$cons2->sex;
                 $fecha_nacimiento=$cons2->fecha_nacimiento;
-                $lugar_nacimiento=$cons2->lugar_nacimiento;
-                $states=$cons2->states;
-                $municipalitys=$cons2->municipalitys;
-                $parroquias=$cons2->parroquias;
                 $cat.="<tr>
                         <th scope='row'><center>$i</center></th>
                         <td><center>$cedula</center></td>
                         <td><center>$nombre</center></td>
                         <td><center>$sex</center></td>
                         <td><center>$fecha_nacimiento</center></td>
-                        <td><center>$lugar_nacimiento</center></td>
-                        <td><center>$states</center></td>
-                        <td><center>$municipalitys</center></td>
-                        <td><center>$parroquias</center></td>
                         <td>
                             <center data-turbolinks='false' class='navbar navbar-light'>
                                 <a onclick = \"return mostrar($id,'Mostrar');\" class='btn btn-info btncolorblanco' href='#' >
@@ -582,7 +574,7 @@ class EstudianteController extends Controller
         $cedula=$request->cedula;
         $id="";
         $nombre="";
-        
+
         $apellido="";
         $sex="";
         $telefono="";

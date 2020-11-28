@@ -138,7 +138,7 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="telefono"><b>Telefono:</b></label>
-                <input type="tel" class="form-control" maxlength="11" required id="telefono" name="telefono" />
+                <input type="tel" class="form-control" maxlength="11" onkeypress="return numero_e(event)" required id="telefono" name="telefono" />
                 <input type="hidden" id="telefono2" name="telefono2" />
                 <small id="telefono_e" style="color: red"></small>
             </div>
@@ -320,7 +320,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="telefono_r"><b>Telefono:</b></label>
-                    <input type="tel" class="form-control" maxlength="11" required id="telefono_r" name="telefono_r" />
+                    <input type="tel" class="form-control" maxlength="11" onkeypress="return numero_e(event)" required id="telefono_r" name="telefono_r" />
                     <small id="telefono_r_e" style="color: red"></small>
                 </div>
 

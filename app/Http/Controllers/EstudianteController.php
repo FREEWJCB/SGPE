@@ -78,7 +78,7 @@ class EstudianteController extends Controller
         $sex_r=$request->sex_r;
         $telefono_r=$request->telefono_r;
         $direccion_r=$request->direccion_r;
-        $municipality_r=$request->municipality_r;
+        $parroquia_r=$request->parroquia_r;
         $ocupacion_laboral=$request->ocupacion_laboral;
         $parentesco=$request->parentesco;
 
@@ -131,7 +131,7 @@ class EstudianteController extends Controller
                 'sex' => $sex_r,
                 'telefono' => $telefono_r,
                 'direccion' => $direccion_r,
-                'municipality' => $municipality_r
+                'parroquia' => $parroquia_r
                 ]);
 
         }else{

@@ -116,6 +116,7 @@
     $('#sex2').val($('#sex').val());
     $('#telefono2').val($('#telefono').val());
     $('#parentesco2').val($('#parentesco').val());
+    $('#state2').val($('#state').val());
     $('#municipality2').val($('#municipality').val());
     $('#parroquia2').val($('#parroquia').val());
     $('#direccion2').val($('#direccion').val());
@@ -194,7 +195,7 @@
 
 @section('funciones')
 
-    function estudiante() {
+    function estudiante(val) {
         $("#button_estudiante").attr("class", "btn btn-success");
         $("#button_salud").attr("class", "btn btn-secondary");
         $("#button_representante").attr("class", "btn btn-secondary");
@@ -206,7 +207,7 @@
         $("#siguiente").attr("class", "btn btn-primary");
         $("#siguiente").removeAttr("disabled");
         $("#ventana").val('1');
-        val_estudiante('si');
+        val_estudiante(val);
     }
 
     function salud() {
@@ -244,7 +245,7 @@
 
         if (ventana == 2) {
 
-            estudiante();
+            estudiante("si");
 
         }else if(ventana == 3){
 
@@ -471,7 +472,7 @@
                         $("#telefono_r").val(valores.telefono);
                         $("#state_r").val(valores.state);
                         combo("municipality","state",valores.state,"municipality_r",valores.municipality,"municipio","municipalitys",1);
-                        combo("parroquia","municipality",valores.municipality,"parroquia_r",valores.parroquia,"parroquia","parroquia",1);
+                        combo("parroquia","municipality",valores.municipality,"parroquia_r",valores.parroquia,"parroquia","parroquias",1);
                         $("#direccion_r").val(valores.direccion);
                         $("#nombre_r").attr("readonly", "readonly");
                         $("#apellido_r").attr("readonly", "readonly");
@@ -553,7 +554,7 @@
 
     function limpiar() {
         clear();
-        estudiante();
+        estudiante("no");
         $("#persona_v").val(false);
         $("#representante_v").val(false);
         $("#siguiente").attr("class", "btn btn-secondary");
@@ -587,7 +588,7 @@
         $("#alergia").removeAttr("readonly");
         $("#discapacidad").removeAttr("readonly");
         $("#discapacidad").removeAttr("readonly");
-        val_estudiante();
+        val_estudiante("no");
 
     }
 
@@ -627,102 +628,86 @@
 
         if(nombre == ""){
             i++; nom++;
-            $("#nombre").attr('class', 'form-control border border-danger');
             message.push('El campo nombre es obligatorio.');
 
         }else if(nombre.length > 255){
             i++; nom++;
-            $("#nombre").attr('class', 'form-control border border-danger');
             message.push('El campo nombre no debe contener más de 255 caracteres.');
 
         }else if(nombre.length < 3){
             i++; nom++;
-            $("#nombre").attr('class', 'form-control border border-danger');
             message.push('El campo nombre debe contener al menos 03 caracteres.');
 
         }
 
         if(apellido == ""){
             i++; ape++;
-            $("#apellido").attr('class', 'form-control border border-danger');
             message.push('El campo apellido es obligatorio.');
 
         }else if(apellido.length > 255){
             i++; ape++;
-            $("#apellido").attr('class', 'form-control border border-danger');
             message.push('El campo apellido no debe contener más de 255 caracteres.');
 
         }else if(apellido.length < 3){
             i++; ape++;
-            $("#apellido").attr('class', 'form-control border border-danger');
             message.push('El campo apellido debe contener al menos 03 caracteres.');
 
         }
 
         if(sex == "" || sex == "null"){
             i++; se++;
-            $("#sex").attr('class', 'form-control border border-danger');
             message.push('El campo sexo es obligatorio.');
 
         }
 
         if(fecha_nacimiento == "" || fecha_nacimiento == "null"){
             i++; fec++;
-            $("#fecha_nacimiento").attr('class', 'form-control border border-danger');
             message.push('El campo fecha de nacimiento es obligatorio.');
 
         }
 
         if(lugar_nacimiento == "" || lugar_nacimiento == "null"){
             i++; lug++;
-            $("#lugar_nacimiento").attr('class', 'form-control border border-danger');
             message.push('El campo lugar de nacimiento es obligatorio.');
 
         }
 
         if(telefono == ""){
             i++; tel++;
-            $("#telefono").attr('class', 'form-control border border-danger');
             message.push('El campo telefono es obligatorio.');
 
         }else if(telefono.length != 11){
             i++; tel++;
-            $("#telefono").attr('class', 'form-control border border-danger');
             message.push('El campo telefono no debe contener más de 11 caracteres.');
 
         }
 
         if(state == "" || state == "null"){
             i++; sta++;
-            $("#state").attr('class', 'form-control border border-danger');
             message.push('El campo estado es obligatorio.');
 
         }
 
         if(municipality == "" || municipality == "null"){
             i++; mun++;
-            $("#municipality").attr('class', 'form-control border border-danger');
             message.push('El campo municipio es obligatorio.');
 
         }
 
         if(parroquia == "" || parroquia == "null"){
             i++; par++;
-            $("#parroquia").attr('class', 'form-control border border-danger');
             message.push('El campo parroquia es obligatorio.');
 
         }
 
         if(direccion == ""){
             i++; dir++;
-            $("#direccion").attr('class', 'form-control border border-danger');
             message.push('El campo dirección es obligatorio.');
 
         }
         
         if(descripcion == ""){
             i++; des++;
-            $("#descripcion").attr('class', 'form-control border border-danger');
             message.push('El campo descripción es obligatorio.');
 
         }
@@ -769,7 +754,7 @@
 
                 if (lug > 0) {
                     u++;
-                    $("#lugar_nacimiento").val('null');
+                    $("#lugar_nacimiento").val('');
                     $("#lugar_nacimiento").attr('class', 'form-control border border-danger');
                     $("#lugar_nacimiento_e").html(message[u]);
                 }

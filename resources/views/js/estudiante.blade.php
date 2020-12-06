@@ -103,7 +103,7 @@
 
 @section('url_registro') url = "{{ route('Estudiante.store') }}"; @endsection
 
-@section('url_edicion') url = `{{url('Representante')}}/${id}`; @endsection
+@section('url_edicion') url = `{{url('Estudiante')}}/${id}`; @endsection
 
 @section('select') limpiar(); @endsection
 
@@ -129,7 +129,7 @@
 
  @endsection
 
-@section('delete') url: `{{url('Representante')}}/${id}`, @endsection
+@section('delete') url: `{{url('Estudiante')}}/${id}`, @endsection
 
 @section('cargar') url: "{{route('Estudiante.cargar')}}", @endsection
 
@@ -157,6 +157,7 @@
     $("#fecha_nacimiento2").val(valores.fecha_nacimiento);
     $("#lugar_nacimiento").val(valores.lugar_nacimiento);
     $("#lugar_nacimiento2").val(valores.lugar_nacimiento);
+    $("#descripcion").val(valores.descripcion);
     $("#descripcion2").val(valores.descripcion);
     $("#ocupacion_laboral").val(valores.ocupacion_laboral);
     $("#persona").val(valores.persona);
@@ -460,7 +461,7 @@
                 $("#direccion_r").val('');
             },
             success: function(valores) {
-                
+
                 if(valores.num_p > 0){
                     if(valores.num_es == 0){
                         $("#persona_v").val(true);
@@ -502,7 +503,7 @@
                         $("#cedula_r").attr('class', 'form-control border border-danger');
                         $("#cedula_r_e").html('El valor del campo cédula ya está en uso en un estudiante.');
                     }
-                    
+
                 }else{
                     $("#persona_v").val(false);
                     $("#representante_v").val(false);
@@ -609,7 +610,7 @@
         let direccion = $("#direccion").val(); let direccion2 = $("#direccion2").val();
         let descripcion = $("#descripcion").val(); let descripcion2 = $("#descripcion2").val();
         let i = 0; let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let sta = 0; let mun = 0; let par = 0; let dir = 0; let des = 0; let fec = 0; let lug = 0;
-        
+
         if(pro == 'Registro'){
             if(cedula == ""){
                 i++; ced++;
@@ -705,13 +706,13 @@
             message.push('El campo dirección es obligatorio.');
 
         }
-        
+
         if(descripcion == ""){
             i++; des++;
             message.push('El campo descripción es obligatorio.');
 
         }
-        
+
 
         if(i > 0 && val == "si"){
             let u = 0;
@@ -843,13 +844,13 @@
                         $("#state").attr('class', 'form-control border border-danger');
                         $("#state_e").html(message[u]);
                     }
-                    
+
                     if (mun > 0){
                         u++;
                         $("#municipality").attr('class', 'form-control border border-danger');
                         $("#municipality_e").html(message[u]);
                     }
-                    
+
                     if (par > 0){
                         u++;
                         $("#parroquia").attr('class', 'form-control border border-danger');
@@ -872,7 +873,7 @@
                 }
 
             }
-            
+
         }
 
         if(i > 0){
@@ -885,7 +886,7 @@
     function val_estudiante(val) {
         let ventana = $('#ventana').val();
         let boo = validacion_estudiante(val);
-        
+
         if (boo == true) {
             if(ventana == 1){
                 $("#button_estudiante").attr("class", "btn btn-success");
@@ -938,7 +939,7 @@
     let parroquia_r = $("#parroquia_r").val();
     let direccion_r = $("#direccion_r").val();
     let ced = 0; let nom = 0; let ape = 0; let se = 0; let tel = 0; let ocu = 0; let sta = 0; let mun = 0; let par = 0; let dir = 0; let pare = 0;
-    
+
     if(boo2 == false){
         i++;
     }
@@ -949,13 +950,13 @@
         $("#parentesco_e").html('El campo parentesco es obligatorio.');
 
     }
-    
+
     if(representante_v == '' && representante_v == false){
         if(ocupacion_laboral == "" || ocupacion_laboral == "null"){
             i++; ocu++;
             $("#ocupacion_laboral").attr('class', 'form-control border border-danger');
             $("#ocupacion_laboral_e").html('El campo ocupación laboral es obligatorio.');
-    
+
         }
         if(persona_r == '' && persona_v == false){
 
@@ -975,7 +976,7 @@
                 $("#cedula_r_e").html('El campo cedula debe contener al menos 7 caracteres.');
 
             }
-            
+
 
             if(nombre_r == ""){
                 i++; nom++;
@@ -1078,42 +1079,42 @@
                 if (ced > 0) {
                     $("#cedula_r").val('');
                 }
-    
+
                 if (nom > 0) {
                     $("#nombre_r").val('');
                 }
-    
+
                 if (ape > 0) {
                     $("#apellido_r").val('');
                 }
-    
+
                 if (se > 0) {
                     $("#sex_r").val('null');
                 }
-    
+
                 if (tel > 0) {
                     $("#telefono_r").val('');
                 }
-    
+
                 if (sta > 0) {
                     $("#state_r").val('null');
                     $('#municipality_r').html('<option value="null" disabled selected>Seleccione un municipio</option>');
                     $('#parroquia_r').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
                 }
-    
+
                 if (mun > 0) {
                     $("#municipality_r").val('null');
                     $('#parroquia_r').html('<option value="null" disabled selected>Seleccione un parroquia</option>');
                 }
-    
+
                 if (par > 0) {
                     $("#parroquia_r").val('null');
                 }
-    
+
                 if (dir > 0) {
                     $("#direccion_r").val('');
                 }
-            
+
             }
         }
         boo = false;

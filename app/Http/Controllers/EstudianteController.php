@@ -257,12 +257,10 @@ class EstudianteController extends Controller
         ->join('municipality', 'parroquia.municipality', '=', 'municipality.id');
 
         $cons= DB::table('estudiante_representante')
-        ->join([
-            ['persona', 'estudiante.persona', '=', 'persona.id'],
-            ['parroquia', 'persona.parroquia', '=', 'parroquia.id'],
-            ['municipality', 'parroquia.municipality', '=', 'municipality.id'],
-            ['state', 'municipality.state', '=', 'state.id']
-        ])
+        ->join('persona', 'estudiante.persona', '=', 'persona.id')
+        ->join('parroquia', 'persona.parroquia', '=', 'parroquia.id')
+        ->join('municipality', 'parroquia.municipality', '=', 'municipality.id')
+        ->join('state', 'municipality.state', '=', 'state.id')
         ->where([
             ['estudiante_representante.status', 1],
             ['estudiante', $estudiante->id]
@@ -291,10 +289,8 @@ class EstudianteController extends Controller
 
         $cons= DB::table('estudiante_alergia')
                  ->select('estudiante_alergia.alergia','alergia.alergias','alergia.descripcion','tipo_alergia.tipo')
-                 ->join(
-                     ['alergia', 'estudiante_alergia.alergia', '=', 'alergia.id'],
-                     ['tipo_alergia', 'alergia.tipo', '=', 'tipo_alergia.id']
-                 )
+                 ->join('alergia', 'estudiante_alergia.alergia', '=', 'alergia.id')
+                 ->join('tipo_alergia', 'alergia.tipo', '=', 'tipo_alergia.id')
                  ->where('estudiante', $estudiante->id);
 
         $cons1 = $cons->get();
@@ -327,11 +323,8 @@ class EstudianteController extends Controller
 
         $cons= DB::table('estudiante_discapacidad')
                  ->select('estudiante_discapacidad.discapacidad','discapacidad.discapacidades','discapacidad.descripcion','tipo_discapacidad.tipo')
-                 ->join(
-                     ['discapacidad', 'estudiante_discapacidad.discapacidad', '=', 'discapacidad.id'],
-                     ['tipo_discapacidad', 'discapacidad.tipo', '=', 'tipo_discapacidad.id']
-                 )
-                 ->where('estudiante', $estudiante->id);
+                 ->join('discapacidad', 'estudiante_discapacidad.discapacidad', '=', 'discapacidad.id')
+                 ->join('tipo_discapacidad', 'discapacidad.tipo', '=', 'tipo_discapacidad.id')->where('estudiante', $estudiante->id);
 
         $cons1 = $cons->get();
         $num = $cons->count();
